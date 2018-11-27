@@ -9,7 +9,7 @@ import * as Icons from './icons'
 import Route1 from './routes/route1'
 import Route2 from './routes/route2'
 import AppServices from './containers/appServices'
-import Commandes from './routes/commandes'
+import Commande from './routes/commande'
 
 import { LocaleProvider } from 'antd';
 import fr_FR from 'antd/lib/locale-provider/fr_FR';
@@ -229,50 +229,49 @@ export default class App extends React.Component {
       <Button prefix={<Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />} 
         type="disabled" htmlType="submit" className="login-form-button" children="appeler nous au (819) 643-4448" />,
     ]
-
     //const rollOff = Icons[`CloseSquareO`]
     return (
         <div style={{height:'100vh',boxSizing:'border-box'}}>
-          <Router>
-            <Route
-              render={({ location, ...rest }) => (
-                <div className="fill">
-                  <Route exact path="/" render={() => <Redirect to="/route1" />} />
-                  <nav style={{height:'10vh',display:'flex',flexDirection:'column',justifyContent:'center'}}>
-                    <div style={{margin:10,display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                      <div style={{fontSize:40,marginLeft:20}}>
-                        Consultants PME Outaouais
-                      </div>
-                      <ul className="nav">
-                        <NavLink to="/route1"><span>Accueil</span></NavLink>
-                        <NavLink to="/route2"><span>Services</span></NavLink>
-                        <li className="navItem" onClick={this.toggleOrder} style={{display:'flex'}}><Icon type="gift" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px' }} /> Commandes</li>
-                        <li className="navItem" onClick={this.toggle} style={{display:'flex'}}><Icon type="mail" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px'  }} /> Contact</li>
-                        <li className="navItem" onClick={this.toggleLanguage}><SwitchA checkedChildren="F" unCheckedChildren="E" defaultChecked /></li>
-                      </ul>
-                    </div>
-                  </nav>
-                  <div className="content-route">
-                    <Transition
-                      native
-                      config={{ tension: 1, friction: 10 }}
-                      keys={location.pathname.split('/').filter(a => a)[0]}
-                      from={{ transform: 'translateY(500px)', opacity: 0 }}
-                      enter={{ transform: 'translateY(0px)', opacity: 1 }}
-                      leave={{ transform: 'translateY(500px)', opacity: 0 }}>
-                      {style => (
-                        <Switch location={location}>
-                          <Route path="/route1" render={props => Route1({ ...props, style })} />
-                          <Route path="/route2" render={props => AppServices({ ...props, style })} />
-                          <Route render={() => <div>Not Found</div>} />
-                        </Switch>
-                      )}
-                    </Transition>
-                  </div>
-                </div>
-              )}
-            />
-          </Router>
+            <Router>
+                <Route
+                    render={({ location, ...rest }) => (
+                        <div className="fill">
+                            <Route exact path="/" render={() => <Redirect to="/route1" />} />
+                                <nav style={{height:'10vh',display:'flex',flexDirection:'column',justifyContent:'center'}}>
+                                    <div style={{margin:10,display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                                        <div style={{fontSize:40,marginLeft:20}}>
+                                            Consultants PME Outaouais
+                                        </div>
+                                        <ul className="nav">
+                                          <NavLink to="/route1"><span>Accueil</span></NavLink>
+                                          <NavLink to="/route2"><span>Services</span></NavLink>
+                                          <li className="navItem" onClick={this.toggleOrder} style={{display:'flex'}}><Icon type="gift" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px' }} /> Commandes</li>
+                                          <li className="navItem" onClick={this.toggle} style={{display:'flex'}}><Icon type="mail" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px'  }} /> Contact</li>
+                                          <li className="navItem" onClick={this.toggleLanguage}><SwitchA checkedChildren="F" unCheckedChildren="E" defaultChecked /></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            <div className="content-route">
+                            <Transition
+                                native
+                                config={{ tension: 1, friction: 10 }}
+                                keys={location.pathname.split('/').filter(a => a)[0]}
+                                from={{ transform: 'translateY(500px)', opacity: 0 }}
+                                enter={{ transform: 'translateY(0px)', opacity: 1 }}
+                                leave={{ transform: 'translateY(500px)', opacity: 0 }}>
+                                    {style => (
+                                        <Switch location={location}>
+                                        <Route path="/route1" render={props => Route1({ ...props, style })} />
+                                        <Route path="/route2" render={props => AppServices({ ...props, style })} />
+                                        <Route render={() => <div>Not Found</div>} />
+                                        </Switch>
+                                    )}
+                            </Transition>
+                            </div>
+                        </div>
+                    )}
+                />
+            </Router>
         
         {/* SIDEBAR */}
         <div style={{position:'absolute',top:0,right:0,height:'100vh',overflow:'hidden'}}>
@@ -299,8 +298,8 @@ export default class App extends React.Component {
         <div style={{position:'absolute',top:0,left:0,height:'100vh',overflow:'hidden'}}>
         { 
             this.state.language 
-            ? <LocaleProvider locale={fr_FR}><Commandes state={this.state.openOrder}/></LocaleProvider>
-            : <Commandes state={this.state.openOrder}/>
+            ? <LocaleProvider locale={fr_FR}><Commande state={this.state.openOrder}/></LocaleProvider>
+            : <Commande state={this.state.openOrder}/>
         }
         </div>
 

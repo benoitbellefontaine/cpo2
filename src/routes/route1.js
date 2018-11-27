@@ -57,7 +57,7 @@ const Script = Keyframes.Spring(async next =>
 )*/
 
 const Route1 = ({ style, show, language }) => (
-  <animated.div className="mainRoute" style={{ ...style, background: `#54c33d`, height:'100%' }}>
+  <animated.div className="mainRoute" style={{ ...style, background: `#bbbbcb`, height:'100%' }}>
 
     <div style={{display:'flex',flexDirection:'column',alignItems:'center',boxSizing:'border-box'}}>
       
@@ -94,11 +94,11 @@ const Route1 = ({ style, show, language }) => (
             </animated.h1>
           ))}
         </Content>
+
       </div>
 
       <div style={{display:'flex',flexDirection:'row',alignItems:'center',boxSizing:'border-box'}}>
         
-
         <Content
           native
           //items={letters2.map(_=>_)}

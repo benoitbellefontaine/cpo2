@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
-import { toggleService } from '../actions'
-import Services from '../components/services'
-import { VisibilityFilters } from '../actions'
+import { selectSituation } from '../actions'
+import Situations from '../components/situations'
+//import { VisibilityFilters } from '../actions'
 
 const getVisibleServices = (services, filter) => {
   switch (filter) {
@@ -9,16 +9,8 @@ const getVisibleServices = (services, filter) => {
       return services
     case VisibilityFilters.SHOW_SELECTED:
       return services.filter(t => t.selected)
-    case 'SHOW_DEMARRAGE': 
-      return services.filter(t => ( t.type === 'demarrage' ))
-    case 'SHOW_COURTTERME': 
-      return services.filter(t => ( t.type === 'court terme' ))
-    case 'SHOW_MOYENTERME': 
-      return services.filter(t => ( t.type === 'moyen terme' ))
-    case 'SHOW_EXCELLENCE': 
-      return services.filter(t => ( t.type === 'excellence' ))
-    case 'SHOW_REDRESSEMENT': 
-      return services.filter(t => ( t.type === 'redressement' ))
+    case VisibilityFilters.SHOW_ACTIVE:
+      return services.filter(t => !t.selected)
     default:
       throw new Error('Unknown filter: ' + filter)
   }
