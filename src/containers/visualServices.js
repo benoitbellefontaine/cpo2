@@ -25,7 +25,8 @@ const getVisibleServices = (services, filter) => {
 }
 
 const mapStateToProps = state => ({
-  services: getVisibleServices(state.services, state.visibilityFilter)
+  services: getVisibleServices(state.services, state.visibilityFilter),
+  //selected: state.selected
 })
 
 const mapDispatchToProps = dispatch => ({

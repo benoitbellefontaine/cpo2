@@ -53,7 +53,8 @@ const Services = ({ show, services, toggleService }) => (
             state={"open"}
             >
             {services.map(service => ({ y, opacity, ...props }) => (
-                <Service key={service.id} {...service} onClick={() => toggleService(service.id)} y={y}
+                <Service key={service.id} {...service} 
+                    onClick={() => toggleService(service.id)} y={y}
                     opacity={opacity}/>
             ))}
         </Content>

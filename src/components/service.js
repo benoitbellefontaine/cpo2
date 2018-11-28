@@ -1,6 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Keyframes, animated, Spring, config } from 'react-spring'
+import { animated } from 'react-spring'
+import { Tooltip } from 'antd';
+import { message, Alert } from 'antd';
+
+const info = () => {
+  message.info('hello');
+};
 
 const Service = ({ onClick, selected, text, color, r, g, b, id, y, opacity }) => (
   <animated.li
@@ -10,22 +16,24 @@ const Service = ({ onClick, selected, text, color, r, g, b, id, y, opacity }) =
       listStyleType: 'none',
       opacity: opacity,
       padding: '4px 4px 4px 10px',
-      margin: 3,
+      margin: 2,
       borderRadius: 10,
       color: selected ? 'white' : color,
-      backgroundColor: selected ? `rgba(${r},${g},${b},1)` : `rgba(${r},${g},${b},0.1)`,
+      backgroundColor: selected ? `rgba(${r},${g},${b},1)` : `rgba(${r},${g},${b},0.2)`,
       border: `1px dashed ${color}`,
-      fontSize: '1.3vw',
+      fontSize: '1vw',
       fontWeight: selected ? 600 : 300,
       flexGrow: 1,
       
     }}
   >
-    <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-      <div>
-        <i className={selected ? `fas fa-check-square fa-1x` : `far fa-square fa-1x`} style={{paddingRight:5}}></i>
-      </div>
-      {id}-{text}
+    <div onMouseDown={info}>
+      <Tooltip placement="topLeft" title={text} style={{maxWidth:'5vw'}}>
+        <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+          <i className={selected ? `fas fa-check-square fa-1x` : `far fa-square fa-1x`} style={{paddingRight:5}}></i>
+          {id}-{text}
+        </div>
+      </Tooltip>
     </div>
   </animated.li>
 )
