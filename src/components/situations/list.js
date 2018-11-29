@@ -1,7 +1,7 @@
 import React from 'react'
 import { Keyframes, animated, Spring, config } from 'react-spring'
 import PropTypes from 'prop-types'
-import Service from './service'
+import Item from './item'
 
 const Content = Keyframes.Trail({
     peek: [{ delay: 500, y:0, opacity: 1 }, { delay: 500, y:0, opacity: 1 }],
@@ -41,19 +41,19 @@ const Content = Keyframes.Trail({
           ))}
         </Content>*/}
 
-const Services = ({ services, toggleService }) => (
+const List = ({ situations, selectSituation }) => (
 
     <ul style={{width:'100%',height:'inherit',display:'flex',flexDirection:'row',flexWrap:'wrap',justifyContent:'center',margin:3,padding:0}}>
         
         <Content
             native
-            keys={services.map(service => service.id)}
+            keys={situations.map(situation => situation.id)}
             config={{ tension: 200, friction: 20 }}
             //state={show ? "open" : "close"}
             state={"open"}
             >
-            {services.map(service => ({ y, opacity, ...props }) => (
-                <Service key={service.id} {...service} onClick={() => toggleService(service.id)} y={y}
+            {situations.map(situation => ({ y, opacity, ...props }) => (
+                <Item key={situation.id} {...situation} onClick={() => selectSituation(situation.id)} y={y}
                     opacity={opacity}/>
             ))}
         </Content>
@@ -62,16 +62,16 @@ const Services = ({ services, toggleService }) => (
 
 )
 
-Services.propTypes = {
-    services: PropTypes.arrayOf(
+List.propTypes = {
+    situations: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
             selected: PropTypes.bool.isRequired,
             text: PropTypes.string.isRequired,
-            color: PropTypes.string.isRequired,
+            //color: PropTypes.string.isRequired,
         }).isRequired
     ).isRequired,
-    toggleService: PropTypes.func.isRequired
+    selectSituation: PropTypes.func.isRequired
 }
 
-export default Services
+export default List

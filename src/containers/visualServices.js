@@ -1,7 +1,8 @@
 import { connect } from 'react-redux'
-import { toggleService } from '../actions'
+import { selectService, toggleService } from '../actions'
 import Services from '../components/services'
 import { VisibilityFilters } from '../actions'
+import {bindActionCreators} from 'redux'
 
 const getVisibleServices = (services, filter) => {
   switch (filter) {
@@ -25,13 +26,18 @@ const getVisibleServices = (services, filter) => {
 }
 
 const mapStateToProps = state => ({
-  services: getVisibleServices(state.services, state.visibilityFilter),
-  //selected: state.selected
+  services: getVisibleServices(state.services, state.visibilityFilter)
 })
 
-const mapDispatchToProps = dispatch => ({
-  toggleService: id => dispatch(toggleService(id))
-})
+/*const mapDispatchToProps = dispatch => ({
+  bindActionCreators({
+  toggleService: id => dispatch(toggleService(id)),
+  selectService: id => dispatch(selectService(id))},dispatch)
+})*/
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({toggleService: toggleService,selectService: selectService,}, dispatch);
+}
 
 export default connect(
   mapStateToProps,

@@ -33,7 +33,7 @@ const Route2 = ({ style }) => (
               en plus de choisir la date de la livraison et la date de la cueillette.
             </p>
           </div>
-          <div className="box-service" style={{backgroundColor:'#3d54c3',width:'33vw'}}>
+          <div className="box-service" style={{backgroundColor:'#3d54c3'}}>
             <h5>
               TRI
             </h5>

@@ -9,6 +9,7 @@ import * as Icons from './icons'
 import Route1 from './routes/route1'
 import Route2 from './routes/route2'
 import AppServices from './containers/appServices'
+import AppSituations from './containers/appSituations'
 import Commande from './routes/commande'
 
 import { LocaleProvider } from 'antd';
@@ -229,7 +230,7 @@ export default class App extends React.Component {
       <Button prefix={<Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />} 
         type="disabled" htmlType="submit" className="login-form-button" children="appeler nous au (819) 643-4448" />,
     ]
-    //const rollOff = Icons[`CloseSquareO`]
+    const {language} = this.state
     return (
         <div style={{height:'100vh',boxSizing:'border-box'}}>
             <Router>
@@ -243,8 +244,9 @@ export default class App extends React.Component {
                                             Consultants PME Outaouais
                                         </div>
                                         <ul className="nav">
-                                          <NavLink to="/route1"><span>Accueil</span></NavLink>
+                                          <NavLink to="/route1"><span>{this.statelanguage ? <div>Accueil</div> : <div>Home</div>}</span></NavLink>
                                           <NavLink to="/route2"><span>Services</span></NavLink>
+                                          <NavLink to="/route3"><span>{this.state.language ? <div>Cycles</div> : <div>Lifecycles</div>}</span></NavLink>
                                           <li className="navItem" onClick={this.toggleOrder} style={{display:'flex'}}><Icon type="gift" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px' }} /> Commandes</li>
                                           <li className="navItem" onClick={this.toggle} style={{display:'flex'}}><Icon type="mail" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px'  }} /> Contact</li>
                                           <li className="navItem" onClick={this.toggleLanguage}><SwitchA checkedChildren="F" unCheckedChildren="E" defaultChecked /></li>
@@ -259,10 +261,11 @@ export default class App extends React.Component {
                                 from={{ transform: 'translateY(500px)', opacity: 0 }}
                                 enter={{ transform: 'translateY(0px)', opacity: 1 }}
                                 leave={{ transform: 'translateY(500px)', opacity: 0 }}>
-                                    {style => (
+                                    {(style) => (
                                         <Switch location={location}>
                                         <Route path="/route1" render={props => Route1({ ...props, style })} />
                                         <Route path="/route2" render={props => AppServices({ ...props, style })} />
+                                        <Route path="/route3" render={props => AppSituations({ ...props, style, language })} />
                                         <Route render={() => <div>Not Found</div>} />
                                         </Switch>
                                     )}

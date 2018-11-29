@@ -11,8 +11,7 @@ const Link = ({ active, children, onClick, color, style }) => (
       backgroundColor: `${color}`,
       color: 'white',
       border: 'none',
-      flexGrow: 1,
-      lineHeight:'3em'
+      flexGrow: 1
     }}
   >
     {children}

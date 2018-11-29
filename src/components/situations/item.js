@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Keyframes, animated, Spring, config } from 'react-spring'
 
-const Service = ({ onClick, selected, text, color, r, g, b, id, y, opacity }) => (
+const Item = ({ onClick, selected, text, color, r, g, b, id, y, opacity }) => (
   <animated.li
     onClick={onClick}
     style={{
@@ -28,7 +28,7 @@ const Service = ({ onClick, selected, text, color, r, g, b, id, y, opacity }) =
   </animated.li>
 )
 
-Service.propTypes = {
+Item.propTypes = {
   onClick: PropTypes.func.isRequired,
   selected: PropTypes.bool.isRequired,
   id: PropTypes.number.isRequired,
@@ -39,4 +39,4 @@ Service.propTypes = {
   b: PropTypes.string.isRequired,
 }
 
-export default Service
+export default Item

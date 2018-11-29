@@ -1,5 +1,6 @@
 //const ADD_TODO = 'ADD_TODO'
 const TOGGLE_SERVICE = 'TOGGLE_SERVICE'
+const SELECT_SERVICE = 'SELECT_SERVICE'
 const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 const SET_SITUATION_FILTER = 'SET_SITUATION_FILTER'
 
@@ -13,6 +14,13 @@ const SET_SITUATION_FILTER = 'SET_SITUATION_FILTER'
 export const toggleService = id => {
     return {
       type: TOGGLE_SERVICE,
+      id
+    }
+}
+
+export const selectService = id => {
+    return {
+      type: SELECT_SERVICE,
       id
     }
 }
