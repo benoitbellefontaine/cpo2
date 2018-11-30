@@ -1,13 +1,56 @@
 import React, { Fragment } from 'react'
 import { Parallax } from 'react-spring'
 import Curve from '../components/situations/curve'
+import { Group } from '@vx/group';
+import { GlyphDot } from '@vx/glyph';
+import { LinePath } from '@vx/shape';
+import { genDateValue } from '@vx/mock-data';
+import { scaleTime, scaleLinear } from '@vx/scale';
+import { curveMonotoneX, curveBasis } from '@vx/curve';
+
+const data = genDateValue(15);
+
+// accessors
+const date = d => d.date;
+const value = d => d.value;
+
+// scales
+const xScale = scaleTime({
+  domain: [Math.min(...data.map(date)), Math.max(...data.map(date))]
+});
+const yScale = scaleLinear({
+  domain: [0, Math.max(...data.map(value))]
+});
+
+// positions
+const x = d => xScale(date(d));
+const y = d => yScale(value(d));
+
+// colors
+const primary = '#8921e0';
+const secondary = '#00f2ff';
+const contrast = '#ffffff';
 
 const url = (name, wrap = false) => `${wrap ? 'url(' : ''}https://awv3node-homepage.surge.sh/build/assets/${name}.svg${wrap ? ')' : ''}`
 
 export default class VParallax extends React.Component {
+  
     render() {
+      const width = 300;
+      const height = 300;
+      const margin = {left:20,right:20,top:20,bottom:20};
+      
+      const xMax = width - margin.left - margin.right;
+      const yMax = height - margin.top - margin.bottom;
+
+      // update scale range to match bounds
+      xScale.range([0, xMax]);
+      yScale.range([yMax, 0]);
+
       return (
         <Parallax ref={ref => (this.parallax = ref)} pages={3}>
+          <Parallax.Layer offset={0} speed={1} style={{ backgroundColor: '#73805E' }} />
+
           <Parallax.Layer offset={1} speed={1} style={{ backgroundColor: '#805E73' }} />
           <Parallax.Layer offset={2} speed={1} style={{ backgroundColor: '#87BCDE' }} />
   
@@ -61,9 +104,11 @@ export default class VParallax extends React.Component {
             offset={0}
             speed={0.1}
             onClick={() => this.parallax.scrollTo(1)}
-            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-            <h1>Hello</h1>
-            <Curve style={{ width: '100%', height: '100%', bottom:0 }}/>
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '0vh', justifyContent: 'center' }}>
+            
+            <div>La courbe des cycles de vie de l'entreprise</div>
+            <Curve width={600} height={300} margin={margin} />
+            
           </Parallax.Layer>
   
           <Parallax.Layer
