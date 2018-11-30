@@ -11,6 +11,7 @@ import Route2 from './routes/route2'
 import AppServices from './containers/appServices'
 import AppSituations from './containers/appSituations'
 import Commande from './routes/commande'
+import VParallax from './routes/vparallax'
 
 import { LocaleProvider } from 'antd';
 import fr_FR from 'antd/lib/locale-provider/fr_FR';
@@ -247,6 +248,7 @@ export default class App extends React.Component {
                                           <NavLink to="/route1"><span>{this.statelanguage ? <div>Accueil</div> : <div>Home</div>}</span></NavLink>
                                           <NavLink to="/route2"><span>Services</span></NavLink>
                                           <NavLink to="/route3"><span>{this.state.language ? <div>Cycles</div> : <div>Lifecycles</div>}</span></NavLink>
+                                          <NavLink to="/route4"><span>{this.state.language ? <div>Parallax</div> : <div>Parallax</div>}</span></NavLink>
                                           <li className="navItem" onClick={this.toggleOrder} style={{display:'flex'}}><Icon type="gift" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px' }} /> Commandes</li>
                                           <li className="navItem" onClick={this.toggle} style={{display:'flex'}}><Icon type="mail" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px'  }} /> Contact</li>
                                           <li className="navItem" onClick={this.toggleLanguage}><SwitchA checkedChildren="F" unCheckedChildren="E" defaultChecked /></li>
@@ -266,6 +268,7 @@ export default class App extends React.Component {
                                         <Route path="/route1" render={props => Route1({ ...props, style })} />
                                         <Route path="/route2" render={props => AppServices({ ...props, style })} />
                                         <Route path="/route3" render={props => AppSituations({ ...props, style, language })} />
+                                        <Route path="/route4" render={(props) => {return (<VParallax language={language} {...props}/>);}} />
                                         <Route render={() => <div>Not Found</div>} />
                                         </Switch>
                                     )}
