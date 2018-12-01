@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { Keyframes, animated, Spring, config } from 'react-spring'
 import delay from 'delay'
 import './routes.css'
-import '../styles.css'
+import '../appstyles.css'
 import * as Icons from '../icons'
 import { Avatar, Form, Icon, Input, Button, Checkbox } from 'antd'
 

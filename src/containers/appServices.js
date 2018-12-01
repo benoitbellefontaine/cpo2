@@ -1,7 +1,7 @@
 import React from 'react'
 import { animated } from 'react-spring'
 import '../routes/routes.css'
-import '../styles.css'
+import '../appstyles.css'
 import * as Icons from '../icons'
 import VisualServices from './visualServices'
 import Header from '../components/header'

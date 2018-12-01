@@ -17,7 +17,7 @@ import { LocaleProvider } from 'antd';
 import fr_FR from 'antd/lib/locale-provider/fr_FR';
 import 'moment/locale/fr';
 
-import './styles.css'
+import './appstyles.css'
 import 'antd/dist/antd.css'
 import './styles2.css'
 import './routes/routes.css'
@@ -241,7 +241,7 @@ export default class App extends React.Component {
                             <Route exact path="/" render={() => <Redirect to="/route1" />} />
                                 <nav style={{height:'10vh',display:'flex',flexDirection:'column',justifyContent:'center'}}>
                                     <div style={{margin:10,display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                                        <div style={{fontSize:40,marginLeft:20}}>
+                                        <div className="app-titre">
                                             Consultants PME Outaouais
                                         </div>
                                         <ul className="nav">

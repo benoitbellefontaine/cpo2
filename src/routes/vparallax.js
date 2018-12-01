@@ -36,16 +36,9 @@ const url = (name, wrap = false) => `${wrap ? 'url(' : ''}https://awv3node-homep
 export default class VParallax extends React.Component {
   
     render() {
-      const width = 300;
-      const height = 300;
-      const margin = {left:20,right:20,top:20,bottom:20};
-      
-      const xMax = width - margin.left - margin.right;
-      const yMax = height - margin.top - margin.bottom;
-
-      // update scale range to match bounds
-      xScale.range([0, xMax]);
-      yScale.range([yMax, 0]);
+      const width = 400;
+      const height = 200;
+      const margin = {left:40,right:40,top:40,bottom:40};
 
       return (
         <Parallax ref={ref => (this.parallax = ref)} pages={3}>
@@ -104,13 +97,11 @@ export default class VParallax extends React.Component {
             offset={0}
             speed={0.1}
             onClick={() => this.parallax.scrollTo(1)}
-            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '0vh', justifyContent: 'center' }}>
-            
-            <div>La courbe des cycles de vie de l'entreprise</div>
-            <Curve width={600} height={300} margin={margin} />
-            
+            style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', fontSize:'3vw' }}>      
+            <div>Courbe des cycles de vie de l'entreprise</div>
+            <Curve width={width} height={height} margin={margin} />
           </Parallax.Layer>
-  
+        
           <Parallax.Layer
             offset={1}
             speed={0.1}
