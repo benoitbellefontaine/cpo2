@@ -12,10 +12,11 @@ import AppServices from './containers/appServices'
 import AppSituations from './containers/appSituations'
 import Commande from './routes/commande'
 import VParallax from './routes/vparallax'
+import Services from './components/d3-components-services'
 
 import { LocaleProvider } from 'antd';
 import fr_FR from 'antd/lib/locale-provider/fr_FR';
-import 'moment/locale/fr';
+//import 'moment/locale/fr';
 
 import './appstyles.css'
 import 'antd/dist/antd.css'
@@ -33,30 +34,30 @@ const Green = ({ children }) => <span style={{ color: '#57EE89' }}>{children}</s
 const Blue = ({ children }) => <span style={{ color: '#57C7FF' }}>{children}</span>
 const Gray = ({ children }) => <span style={{ color: '#909090' }}>{children}</span>
 
-  const Page = ({ offset, caption, first, second, gradient, onClick }) => (
-    <React.Fragment>
-      <Parallax.Layer offset={offset} speed={0.2} onClick={onClick}>
-        <div className="slopeBegin" />
-      </Parallax.Layer>
-  
-      <Parallax.Layer offset={offset} speed={-0.2} onClick={onClick}>
-        <div className={`slopeEnd ${gradient}`} />
-      </Parallax.Layer>
-  
-      <Parallax.Layer className="text number" offset={offset} speed={0.3}>
-        <span>0{offset + 1}</span>
-      </Parallax.Layer>
-  
-      <Parallax.Layer className="text header" offset={offset} speed={0.4}>
-        <span>
-          <p style={{ fontSize: 20 }}>{caption}</p>
-          <div className={`stripe ${gradient}`} />
-          <p>{first}</p>
-          <p>{second}</p>
-        </span>
-      </Parallax.Layer>
-    </React.Fragment>
-  )
+const Page = ({ offset, caption, first, second, gradient, onClick }) => (
+  <React.Fragment>
+    <Parallax.Layer offset={offset} speed={0.2} onClick={onClick}>
+      <div className="slopeBegin" />
+    </Parallax.Layer>
+
+    <Parallax.Layer offset={offset} speed={-0.2} onClick={onClick}>
+      <div className={`slopeEnd ${gradient}`} />
+    </Parallax.Layer>
+
+    <Parallax.Layer className="text number" offset={offset} speed={0.3}>
+      <span>0{offset + 1}</span>
+    </Parallax.Layer>
+
+    <Parallax.Layer className="text header" offset={offset} speed={0.4}>
+      <span>
+        <p style={{ fontSize: 20 }}>{caption}</p>
+        <div className={`stripe ${gradient}`} />
+        <p>{first}</p>
+        <p>{second}</p>
+      </span>
+    </Parallax.Layer>
+  </React.Fragment>
+)
 
 class AppHorizontal extends React.Component {
   scroll = to => this.parallax.scrollTo(to)
@@ -249,6 +250,7 @@ export default class App extends React.Component {
                                           <NavLink to="/route2"><span>Services</span></NavLink>
                                           <NavLink to="/route3"><span>{this.state.language ? <div>Cycles</div> : <div>Lifecycles</div>}</span></NavLink>
                                           <NavLink to="/route4"><span>{this.state.language ? <div>Parallax</div> : <div>Parallax</div>}</span></NavLink>
+                                          <NavLink to="/route5"><span>{this.state.language ? <div>Services</div> : <div>Parallax</div>}</span></NavLink>
                                           <li className="navItem" onClick={this.toggleOrder} style={{display:'flex'}}><Icon type="gift" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px' }} /> Commandes</li>
                                           <li className="navItem" onClick={this.toggle} style={{display:'flex'}}><Icon type="mail" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px'  }} /> Contact</li>
                                           <li className="navItem" onClick={this.toggleLanguage}><SwitchA checkedChildren="F" unCheckedChildren="E" defaultChecked /></li>
@@ -269,6 +271,7 @@ export default class App extends React.Component {
                                         <Route path="/route2" render={props => AppServices({ ...props, style })} />
                                         <Route path="/route3" render={props => AppSituations({ ...props, style, language })} />
                                         <Route path="/route4" render={(props) => {return (<VParallax language={language} {...props}/>);}} />
+                                        <Route path="/route5" render={(props) => {return (<Services language={language} width={window.innerWidth} height={window.innerHeight} {...props}/>);}} />
                                         <Route render={() => <div>Not Found</div>} />
                                         </Switch>
                                     )}

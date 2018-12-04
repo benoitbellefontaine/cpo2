@@ -67,7 +67,7 @@ Services.propTypes = {
         PropTypes.shape({
             id: PropTypes.number.isRequired,
             selected: PropTypes.bool.isRequired,
-            text: PropTypes.string.isRequired,
+            texte: PropTypes.string.isRequired,
             color: PropTypes.string.isRequired,
         }).isRequired
     ).isRequired,
