@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 
 function Node({ node, onClick }) {
-  const width = 40
-  const height = 20
+  const width = 150
+  const height = 30
   return (
     <Fragment>
       {node.depth === 0 && (
@@ -14,8 +14,8 @@ function Node({ node, onClick }) {
           width={width}
           y={-height / 2}
           x={-width / 2}
-          fill={'#272b4d'}
-          stroke={node.data.children ? '#03c0dc' : '#26deb0'}
+          fill={node.data.color}
+          stroke={node.data.children ? node.data.color : node.data.color}
           strokeWidth={1}
           strokeDasharray={!node.data.children ? '2,2' : '0'}
           strokeOpacity={!node.data.children ? 0.6 : 1}
@@ -25,12 +25,15 @@ function Node({ node, onClick }) {
       )}
       <text
         dy={'.33em'}
-        fontSize={9}
+        fontSize={12}
         fontFamily="Arial"
-        textAnchor={'middle'}
+        //dx={ node.depth != 2 ? '0' : '30' }
+        textAnchor={
+          node.depth === 0 ? 'middle' : node.depth === 1 ? 'middle' : 'middle'
+        }
         style={{ pointerEvents: 'none' }}
         fill={
-          node.depth === 0 ? '#71248e' : node.children ? 'white' : '#26deb0'
+          node.depth === 0 ? '#71248e' : node.children ? 'white' : 'white'
         }>
         {node.data.name}
       </text>

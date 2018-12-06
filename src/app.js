@@ -12,11 +12,11 @@ import AppServices from './containers/appServices'
 import AppSituations from './containers/appSituations'
 import Commande from './routes/commande'
 import VParallax from './routes/vparallax'
-import Services from './components/d3-components-services'
+import VXTree from './components/vxtree'
+import SpringTree from './components/tree'
 
 import { LocaleProvider } from 'antd';
 import fr_FR from 'antd/lib/locale-provider/fr_FR';
-//import 'moment/locale/fr';
 
 import './appstyles.css'
 import 'antd/dist/antd.css'
@@ -250,7 +250,8 @@ export default class App extends React.Component {
                                           <NavLink to="/route2"><span>Services</span></NavLink>
                                           <NavLink to="/route3"><span>{this.state.language ? <div>Cycles</div> : <div>Lifecycles</div>}</span></NavLink>
                                           <NavLink to="/route4"><span>{this.state.language ? <div>Parallax</div> : <div>Parallax</div>}</span></NavLink>
-                                          <NavLink to="/route5"><span>{this.state.language ? <div>Services</div> : <div>Parallax</div>}</span></NavLink>
+                                          <NavLink to="/route5"><span>{this.state.language ? <div>vxTree</div> : <div>vxTree</div>}</span></NavLink>
+                                          <NavLink to="/route6"><span>{this.state.language ? <div>sTree</div> : <div>sTree</div>}</span></NavLink>
                                           <li className="navItem" onClick={this.toggleOrder} style={{display:'flex'}}><Icon type="gift" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px' }} /> Commandes</li>
                                           <li className="navItem" onClick={this.toggle} style={{display:'flex'}}><Icon type="mail" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px'  }} /> Contact</li>
                                           <li className="navItem" onClick={this.toggleLanguage}><SwitchA checkedChildren="F" unCheckedChildren="E" defaultChecked /></li>
@@ -271,7 +272,8 @@ export default class App extends React.Component {
                                         <Route path="/route2" render={props => AppServices({ ...props, style })} />
                                         <Route path="/route3" render={props => AppSituations({ ...props, style, language })} />
                                         <Route path="/route4" render={(props) => {return (<VParallax language={language} {...props}/>);}} />
-                                        <Route path="/route5" render={(props) => {return (<Services language={language} width={window.innerWidth} height={window.innerHeight} {...props}/>);}} />
+                                        <Route path="/route5" render={(props) => VXTree({ ...props, style, language })} />
+                                        <Route path="/route6" render={(props) => SpringTree({ ...props, style, language })} />
                                         <Route render={() => <div>Not Found</div>} />
                                         </Switch>
                                     )}

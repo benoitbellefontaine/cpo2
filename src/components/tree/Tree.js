@@ -24,8 +24,8 @@ export default class extends React.Component {
       height,
       margin = {
         top: 30,
-        left: 30,
-        right: 30,
+        left: 50,
+        right: 50,
         bottom: 30,
       },
     } = this.props
@@ -42,8 +42,7 @@ export default class extends React.Component {
     const root = hierarchy(data, d => (d.isExpanded ? d.children : null))
 
     return (
-      <div>
-        <svg width={width} height={height} >
+      <svg width={width} height={height} >
           <LinearGradient id="lg" from="#fd9b93" to="#fe6e9e" />
           <GradientPinkBlue id="gradient" />
           <GradientOrangeRed id="gradientOR" />
@@ -80,7 +79,7 @@ export default class extends React.Component {
             )}
           </Tree>
         </svg>
-      </div>
+      
     )
   }
 }
