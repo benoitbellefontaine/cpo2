@@ -6,6 +6,13 @@ import { hierarchy } from 'd3-hierarchy'
 import { LinkHorizontal } from '@vx/shape';
 import Links from './Links'
 import Nodes from './NodesMove'
+import ServiceList from './redux'
+
+//import { combineReducers }  from 'redux';
+//import { createStore }      from 'redux';
+//import { connect }          from 'react-redux';
+//import reducers             from '../../reducers';
+import store                from '../../index';
 
 const lightpurple = '#374469';
 
@@ -77,6 +84,7 @@ export default class extends React.Component {
                   node.data.isExpanded = !node.data.isExpanded
                   node.data.isSelected = !node.data.isSelected
                   this.forceUpdate()
+                  store.dispatch({ type: 'TOGGLE_SERVICE', id:node.data.id });
                 }}
               />
             </Group>

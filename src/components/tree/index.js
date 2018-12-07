@@ -3,6 +3,7 @@ import { animated } from 'react-spring'
 import { ParentSize } from '@vx/responsive'
 import Tree from './Tree'
 import data from './data'
+import ServiceList from './redux'
 
 const TreeExample = ({style}) => (
   <animated.div className="mainRoute" 
@@ -56,6 +57,7 @@ const TreeExample = ({style}) => (
                     //background: 'radial-gradient(#4f3681,#55bdd5)',
                     //background: 'linear-gradient(to right, #55bdd5,#4f3681)',
                   }}>
+                  <ServiceList style={{width:'50%',margin:'100px auto'}} filter={'SHOW_SELECTED'}/>
                   </div>
               </div>
               <div id="box" style={{height:'15vh',background:'#000000',outline:'1px solid #000000',padding:'5px',fontSize:40,overflowY:'auto'}}>

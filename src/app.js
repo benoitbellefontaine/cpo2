@@ -17,7 +17,6 @@ import SpringTree from './components/tree'
 
 import { LocaleProvider } from 'antd';
 import fr_FR from 'antd/lib/locale-provider/fr_FR';
-import 'moment/locale/fr';
 
 import './appstyles.css'
 import 'antd/dist/antd.css'
@@ -35,30 +34,30 @@ const Green = ({ children }) => <span style={{ color: '#57EE89' }}>{children}</s
 const Blue = ({ children }) => <span style={{ color: '#57C7FF' }}>{children}</span>
 const Gray = ({ children }) => <span style={{ color: '#909090' }}>{children}</span>
 
-  const Page = ({ offset, caption, first, second, gradient, onClick }) => (
-    <React.Fragment>
-      <Parallax.Layer offset={offset} speed={0.2} onClick={onClick}>
-        <div className="slopeBegin" />
-      </Parallax.Layer>
-  
-      <Parallax.Layer offset={offset} speed={-0.2} onClick={onClick}>
-        <div className={`slopeEnd ${gradient}`} />
-      </Parallax.Layer>
-  
-      <Parallax.Layer className="text number" offset={offset} speed={0.3}>
-        <span>0{offset + 1}</span>
-      </Parallax.Layer>
-  
-      <Parallax.Layer className="text header" offset={offset} speed={0.4}>
-        <span>
-          <p style={{ fontSize: 20 }}>{caption}</p>
-          <div className={`stripe ${gradient}`} />
-          <p>{first}</p>
-          <p>{second}</p>
-        </span>
-      </Parallax.Layer>
-    </React.Fragment>
-  )
+const Page = ({ offset, caption, first, second, gradient, onClick }) => (
+  <React.Fragment>
+    <Parallax.Layer offset={offset} speed={0.2} onClick={onClick}>
+      <div className="slopeBegin" />
+    </Parallax.Layer>
+
+    <Parallax.Layer offset={offset} speed={-0.2} onClick={onClick}>
+      <div className={`slopeEnd ${gradient}`} />
+    </Parallax.Layer>
+
+    <Parallax.Layer className="text number" offset={offset} speed={0.3}>
+      <span>0{offset + 1}</span>
+    </Parallax.Layer>
+
+    <Parallax.Layer className="text header" offset={offset} speed={0.4}>
+      <span>
+        <p style={{ fontSize: 20 }}>{caption}</p>
+        <div className={`stripe ${gradient}`} />
+        <p>{first}</p>
+        <p>{second}</p>
+      </span>
+    </Parallax.Layer>
+  </React.Fragment>
+)
 
 class AppHorizontal extends React.Component {
   scroll = to => this.parallax.scrollTo(to)
@@ -233,11 +232,7 @@ export default class App extends React.Component {
       <Button prefix={<Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />} 
         type="disabled" htmlType="submit" className="login-form-button" children="appeler nous au (819) 643-4448" />,
     ]
-    const {language} = this.state;
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    const boxwidth = 2*window.innerWidth/3;
-    const boxheight = window.innerHeight-400;
+    const {language} = this.state
     return (
         <div style={{height:'100vh',boxSizing:'border-box'}}>
             <Router>
@@ -245,45 +240,45 @@ export default class App extends React.Component {
                     render={({ location, ...rest }) => (
                         <div className="fill">
                             <Route exact path="/" render={() => <Redirect to="/route1" />} />
-                              <nav style={{height:'10vh',display:'flex',flexDirection:'column',justifyContent:'center'}}>
-                                  <div style={{margin:10,display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                                      <div className="app-titre">
-                                          Consultants PME Outaouais
-                                      </div>
-                                      <ul className="nav">
-                                        <NavLink to="/route1"><span>{this.statelanguage ? <div>Accueil</div> : <div>Home</div>}</span></NavLink>
-                                        <NavLink to="/route2"><span>Services</span></NavLink>
-                                        <NavLink to="/route3"><span>{this.state.language ? <div>Cycles</div> : <div>Lifecycles</div>}</span></NavLink>
-                                        <NavLink to="/route4"><span>{this.state.language ? <div>Parallax</div> : <div>Parallax</div>}</span></NavLink>
-                                        <NavLink to="/route5"><span>{this.state.language ? <div>vxTree</div> : <div>Parallax</div>}</span></NavLink>
-                                        <NavLink to="/route6"><span>{this.state.language ? <div>SpringTree</div> : <div>Parallax</div>}</span></NavLink>
-                                        <li className="navItem" onClick={this.toggleOrder} style={{display:'flex'}}><Icon type="gift" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px' }} /> Commandes</li>
-                                        <li className="navItem" onClick={this.toggle} style={{display:'flex'}}><Icon type="mail" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px'  }} /> Contact</li>
-                                        <li className="navItem" onClick={this.toggleLanguage}><SwitchA checkedChildren="F" unCheckedChildren="E" defaultChecked /></li>
-                                      </ul>
-                                  </div>
-                              </nav>
-                              <div className="content-route">
-                                <Transition
-                                    native
-                                    config={{ tension: 1, friction: 10 }}
-                                    keys={location.pathname.split('/').filter(a => a)[0]}
-                                    from={{ transform: 'translateY(500px)', opacity: 0 }}
-                                    enter={{ transform: 'translateY(0px)', opacity: 1 }}
-                                    leave={{ transform: 'translateY(500px)', opacity: 0 }}>
-                                        {(style) => (
-                                            <Switch location={location}>
-                                              <Route path="/route1" render={props => Route1({ ...props, style })} />
-                                              <Route path="/route2" render={props => AppServices({ ...props, style })} />
-                                              <Route path="/route3" render={props => AppSituations({ ...props, style, language })} />
-                                              <Route path="/route4" render={(props) => {return (<VParallax language={language} {...props}/>);}} />
-                                              <Route path="/route5" render={(props) => VXTree({ ...props, style, language, width, height, boxwidth, boxheight })} />
-                                              <Route path="/route6" render={(props) => SpringTree({ ...props, style, language, width, height, boxwidth, boxheight })} />
-                                              <Route render={() => <div>Not Found</div>} />
-                                            </Switch>
-                                        )}
-                                </Transition>
-                              </div>
+                                <nav style={{height:'10vh',display:'flex',flexDirection:'column',justifyContent:'center'}}>
+                                    <div style={{margin:10,display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                                        <div className="app-titre">
+                                            Consultants PME Outaouais
+                                        </div>
+                                        <ul className="nav">
+                                          <NavLink to="/route1"><span>{this.statelanguage ? <div>Accueil</div> : <div>Home</div>}</span></NavLink>
+                                          <NavLink to="/route2"><span>Services</span></NavLink>
+                                          <NavLink to="/route3"><span>{this.state.language ? <div>Cycles</div> : <div>Lifecycles</div>}</span></NavLink>
+                                          <NavLink to="/route4"><span>{this.state.language ? <div>Parallax</div> : <div>Parallax</div>}</span></NavLink>
+                                          <NavLink to="/route5"><span>{this.state.language ? <div>vxTree</div> : <div>vxTree</div>}</span></NavLink>
+                                          <NavLink to="/route6"><span>{this.state.language ? <div>sTree</div> : <div>sTree</div>}</span></NavLink>
+                                          <li className="navItem" onClick={this.toggleOrder} style={{display:'flex'}}><Icon type="gift" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px' }} /> Commandes</li>
+                                          <li className="navItem" onClick={this.toggle} style={{display:'flex'}}><Icon type="mail" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px'  }} /> Contact</li>
+                                          <li className="navItem" onClick={this.toggleLanguage}><SwitchA checkedChildren="F" unCheckedChildren="E" defaultChecked /></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            <div className="content-route">
+                            <Transition
+                                native
+                                config={{ tension: 1, friction: 10 }}
+                                keys={location.pathname.split('/').filter(a => a)[0]}
+                                from={{ transform: 'translateY(500px)', opacity: 0 }}
+                                enter={{ transform: 'translateY(0px)', opacity: 1 }}
+                                leave={{ transform: 'translateY(500px)', opacity: 0 }}>
+                                    {(style) => (
+                                        <Switch location={location}>
+                                        <Route path="/route1" render={props => Route1({ ...props, style })} />
+                                        <Route path="/route2" render={props => AppServices({ ...props, style })} />
+                                        <Route path="/route3" render={props => AppSituations({ ...props, style, language })} />
+                                        <Route path="/route4" render={(props) => {return (<VParallax language={language} {...props}/>);}} />
+                                        <Route path="/route5" render={(props) => VXTree({ ...props, style, language })} />
+                                        <Route path="/route6" render={(props) => SpringTree({ ...props, style, language })} />
+                                        <Route render={() => <div>Not Found</div>} />
+                                        </Switch>
+                                    )}
+                            </Transition>
+                            </div>
                         </div>
                     )}
                 />

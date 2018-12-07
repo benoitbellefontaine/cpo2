@@ -15,11 +15,11 @@ function Node({ node, onClick }) {
           width={width}
           y={-height / 2}
           x={-width / 2}
-          fill={'white'}
-          stroke={ node.data.isSelected ? node.data.color : 'white' }
-          strokeWidth={10}
+          fill={ node.data.isSelected ? node.data.color : 'white' }
+          stroke={ node.data.color }
+          strokeWidth={2}
           strokeDasharray={!node.data.children ? '2,2' : '0'}
-          //strokeOpacity={!node.data.children ? 0.6 : 1}
+          strokeOpacity={!node.data.children ? 0.6 : 1}
           rx={!node.data.children ? 10 : 0}
           onClick={onClick}
         />
@@ -34,7 +34,7 @@ function Node({ node, onClick }) {
         //scaleToFit={true}
         style={{ pointerEvents: 'none' }}
         fill={
-          node.depth === 0 ? '#71248e' : node.children ? 'black' : 'black'
+          node.depth === 0 ? '#71248e' : node.data.isSelected ? 'white' : node.data.color
         }>
         {node.data.name}
       </Text>
