@@ -1,51 +1,51 @@
-import React from 'react'
-import { Group } from '@vx/group'
-import { Tree } from '@vx/hierarchy'
-import { LinkHorizontal } from '@vx/shape'
-import { hierarchy } from 'd3-hierarchy'
-import { LinearGradient } from '@vx/gradient'
+import React from 'react';
+import { Group } from '@vx/group';
+import { Tree } from '@vx/hierarchy';
+import { LinkHorizontal } from '@vx/shape';
+import { hierarchy } from 'd3-hierarchy';
+import { LinearGradient } from '@vx/gradient';
 import { animated } from 'react-spring'
 
-const peach =       '#fd9b93';
-const pink =        '#fe6e9e';
-const blue =        '#03c0dc';
-const green =       '#26deb0';
-const plum =        '#71248e';
+const peach = '#fd9b93';
+const pink = '#fe6e9e';
+const blue = '#03c0dc';
+const green = '#26deb0';
+const plum = '#71248e';
 const lightpurple = '#374469';
-const white =       '#ffffff';
-const bg =          '#272b4d';
+const white = '#ffffff';
+const bg = '#272b4d';
 
 const tree = {
   "name": "T",
-  "children": [
-    { 
-      "name": "A",
-      "children": [
-        { "name": "A1" },
-        { "name": "A2" },
-        { "name": "A3" },
-        { "name": "C",
-          "children": [
-            { "name": "C1"}, 
-            { "name": "D",
-              "children": [
-                {"name": "D1"},
-                {"name": "D2"},
-                {"name": "D3"}
-              ]
-            }
-          ]
-        },
-      ]
-    },
+  "children": [{ 
+    "name": "A",
+    "children": [
+      { "name": "A1" },
+      { "name": "A2" },
+      { "name": "A3" },
+      { "name": "C",
+        "children": [{
+          "name": "C1",
+        }, {
+          "name": "D",
+          "children": [{
+            "name": "D1"
+          },{
+            "name": "D2"
+          },{
+            "name": "D3"
+          }]
+        }]
+      },
+    ]},
     { "name": "Z" },
-    { "name": "B",
-      "children": [
-        { "name": "B1"},
-        { "name": "B2"},
-        { "name": "B3"},
-      ]
-    },
+    {
+    "name": "B",
+    "children": [
+      { "name": "B1"},
+      { "name": "B2"},
+      { "name": "B3"},
+    ]},
   ],
 };
 
@@ -73,9 +73,6 @@ function Node({ node }) {
         strokeDasharray={'2,2'}
         strokeOpacity={0.6}
         rx={10}
-        onClick={() => {
-          alert(`clicked: ${JSON.stringify(node.data.name)}`);
-        }}
       />
       <text
         dy={'.33em'}
@@ -84,7 +81,7 @@ function Node({ node }) {
         textAnchor={'middle'}
         fill={green}
         style={{ pointerEvents: 'none' }}
-      >
+        >
         {node.data.name}
       </text>
     </Group>
@@ -93,7 +90,10 @@ function Node({ node }) {
 
 function RootNode({ node }) {
   return (
-    <Group top={node.x} left={node.y}>
+    <Group top={node.x} left={node.y}
+      onClick={() => {
+        alert(`RootNode clicked: ${JSON.stringify(node.data.name)}`);
+      }}>
       <circle r={12} fill="url('#lg')" />
       <text
         dy={'.33em'}
@@ -116,7 +116,11 @@ function ParentNode({ node }) {
   const centerY = -height / 2;
 
   return (
-    <Group top={node.x} left={node.y}>
+    <Group top={node.x} left={node.y}
+      onClick={() => {
+        alert(`clicked: ${JSON.stringify(node.data.name)}`);
+      }}
+      >
       <rect
         height={height}
         width={width}
@@ -125,9 +129,9 @@ function ParentNode({ node }) {
         fill={bg}
         stroke={blue}
         strokeWidth={1}
-        onClick={() => {
+        /*onClick={() => {
           alert(`clicked: ${JSON.stringify(node.data.name)}`);
-        }}
+        }}*/
       />
       <text
         dy={'.33em'}
@@ -144,8 +148,10 @@ function ParentNode({ node }) {
 }
 
 export default ({
-  width = 500,
-  height = 500,
+  width,
+  height,
+  boxwidth,
+  boxheight,
   margin = {
     top: 10,
     left: 30,
@@ -154,17 +160,17 @@ export default ({
   },
   style
 }) => {
-  const data = hierarchy(tree, d => (d.isExpanded ? d.children : null));
+  const data = hierarchy(tree);
   const yMax = height - margin.top - margin.bottom;
   const xMax = width - margin.left - margin.right;
 
   return (
-    <animated.div className="mainRoute" style={{ ...style, backgroundColor: `#eeeefe`,height:'100%',boxSizing:'border-box',display:'flex',flexDirection:'column',justifyContent:'flex-start' }}>
-      <h6 style={{margin:20,padding:0}}>vxTree</h6>
-      <svg width={width} height={height}>
+    <animated.div className="mainRoute" style={{ ...style,backgroundColor: `#eeeeae`,height:'100%',boxSizing:'border-box',display:'flex',flexDirection:'column',justifyContent:'flex-start' }}>
+        <h6 style={{margin:20,padding:0}}>Services</h6>
+      <svg width={boxwidth} height={ height }>
         <LinearGradient id="lg" from={peach} to={pink} />
-        <rect width={width} height={height} rx={14} fill={bg} />
-        <Tree root={data} size={[yMax, xMax]}>
+        <rect width={boxwidth} height={height} rx={10} fill={bg} />
+        <Tree root={data} size={[boxheight, 2*boxwidth/5]}>
           {tree => {
             return (
               <Group top={margin.top} left={margin.left}>

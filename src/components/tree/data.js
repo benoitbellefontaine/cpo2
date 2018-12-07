@@ -1,6 +1,6 @@
 export default
   {
-    "name": "CPO",
+    "name": "Services",
     "id": 0, 
     "selected":true,
     "desc": "Cliquer sur les carrés pleins pour découvrir l'arborescence. Cliquer sur les carrés vides pour découvrir les services et les inclure dans la liste sur la droite.",
@@ -95,4 +95,4 @@ export default
             ]
         },
     ]
-};
+}
