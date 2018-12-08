@@ -7,7 +7,10 @@ function Node({ node, onClick }) {
   return (
     <Fragment>
       {node.depth === 0 && (
-        <circle r={30} fill="url('#gradient')" onClick={onClick} />
+        <Fragment>
+          <circle r={40} fill="white" stroke={ node.data.color } strokeWidth={1} onClick={onClick} />
+          <circle r={30} fill={ node.data.color } stroke={ node.data.color } strokeWidth={3} onClick={onClick} />
+        </Fragment>
       )}
       {node.depth !== 0 && (
         <rect
@@ -20,7 +23,7 @@ function Node({ node, onClick }) {
           strokeWidth={2}
           strokeDasharray={!node.data.children ? '2,2' : '0'}
           strokeOpacity={!node.data.children ? 0.6 : 1}
-          rx={!node.data.children ? 10 : 0}
+          rx={!node.data.children ? 10 : 10}
           onClick={onClick}
         />
       )}
@@ -34,7 +37,7 @@ function Node({ node, onClick }) {
         //scaleToFit={true}
         style={{ pointerEvents: 'none' }}
         fill={
-          node.depth === 0 ? '#71248e' : node.data.isSelected ? 'white' : node.data.color
+          node.depth === 0 ? 'white' : node.data.isSelected ? 'white' : node.data.color
         }>
         {node.data.name}
       </Text>

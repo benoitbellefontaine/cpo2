@@ -5,7 +5,7 @@ import Tree from './Tree'
 import data from './data'
 import ServiceList from './redux'
 
-const TreeExample = ({style}) => (
+const TreeExample = ({style, language}) => (
   <animated.div className="mainRoute" 
     style={{ ...style,
       backgroundColor: `#eeeeae`,
@@ -16,7 +16,7 @@ const TreeExample = ({style}) => (
       justifyContent:'flex-start'
     }}>
     <h6 style={{position:'absolute',left:30,margin:0,padding:20,color:'black'}}>Services</h6>
-    <div style={{width:'100%',height:'75vh',display:'flex',flexDirection:'column',background: '#eeeeae',boxSizing:'border-box',borderTop:'1px solid #55bdd5'}}>
+    <div style={{width:'100%',height:'75vh',display:'flex',flexDirection:'column',background:'#eeeeae',boxSizing:'border-box',borderTop:'1px solid #55bdd5'}}>
       <ParentSize>
         {parent => 
           (
@@ -43,21 +43,27 @@ const TreeExample = ({style}) => (
                     data={data}
                     width={parent.width * 0.6}
                     height={parent.height * 1.0}
+                    language={language}
                   />
                 </div> 
-                <div
-                  style={{
-                    width: '40vw',
-                    height: '100%',
-                    color: "black",
-                    borderLeft: '1px solid #55bdd5',
-                    //padding: 20,
-                    background: '#ffffff',
-                    //from="#55bdd5" to="#4f3681"
-                    //background: 'radial-gradient(#4f3681,#55bdd5)',
-                    //background: 'linear-gradient(to right, #55bdd5,#4f3681)',
-                  }}>
-                  <ServiceList style={{width:'50%',margin:'100px auto'}} filter={'SHOW_SELECTED'}/>
+                <div style={{
+                      width: '40vw',
+                      height: '100%',
+                      color: "black",
+                      borderLeft: '1px solid #55bdd5',
+                      padding: 10,
+                      background: '#ffffff',
+                      overflowY: 'auto',
+                      boxSizing: 'border-box',
+                      //from="#55bdd5" to="#4f3681"
+                      //background: 'radial-gradient(#4f3681,#55bdd5)',
+                      //background: 'linear-gradient(to right, #55bdd5,#4f3681)',
+                    }}>
+
+                    <div style={{width:'100%',textAlign:'center',fontSize:30,margin:0,padding:0,textDecoration:'underline'}}><em>{language ? <span>Sélection</span> : <span>Selection</span>}</em></div>
+                  
+                    <ServiceList filter={'SHOW_SELECTED'} language={language} />
+                    
                   </div>
               </div>
               <div id="box" style={{height:'15vh',background:'#000000',outline:'1px solid #000000',padding:'5px',fontSize:40,overflowY:'auto'}}>

@@ -1,7 +1,8 @@
 import React from 'react'
 import { Group } from '@vx/group'
 import { Tree } from '@vx/hierarchy'
-import { LinearGradient, GradientPinkBlue, GradientOrangeRed, RadialGradient } from '@vx/gradient'
+import { LinearGradient, GradientPinkBlue, GradientOrangeRed, RadialGradient,
+  GradientTealBlue } from '@vx/gradient'
 import { hierarchy } from 'd3-hierarchy'
 import { LinkHorizontal } from '@vx/shape';
 import Links from './Links'
@@ -51,12 +52,12 @@ export default class extends React.Component {
     return (
       
       <svg width={width} height={height} >
-        <LinearGradient id="lg" from="#fd9b93" to="#fe6e9e" />
+        <GradientTealBlue id="lg" vertical={false} />
         <GradientPinkBlue id="gradient" />
         <GradientOrangeRed id="gradientOR" />
-        <LinearGradient from="#4f3681" to="white" id="Radial" r={'80%'} vertical={false}/>
-        {/*<rect width={width} height={height} fill={`url(#Radial)`}/>*/}
-        <Tree 
+        <LinearGradient from="#4f3681" to="white" id="Radial" r={'80%'} vertical={false} />
+        {/*<rect width={width} height={height} fill={`url(#Radial)`} />*/}
+        <Tree
           top={margin.top}
           left={margin.left}
           root={root}
