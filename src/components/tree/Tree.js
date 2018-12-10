@@ -30,6 +30,7 @@ export default class extends React.Component {
       data,
       width,
       height,
+      language,
       margin = {
         top: 30,
         left: 30,
@@ -52,11 +53,11 @@ export default class extends React.Component {
     return (
       
       <svg width={width} height={height} >
-        <GradientTealBlue id="lg" vertical={false} />
-        <GradientPinkBlue id="gradient" />
-        <GradientOrangeRed id="gradientOR" />
-        <LinearGradient from="#4f3681" to="white" id="Radial" r={'80%'} vertical={false} />
-        {/*<rect width={width} height={height} fill={`url(#Radial)`} />*/}
+        <GradientTealBlue id="tb" vertical={false} />
+        <GradientPinkBlue id="pb" />
+        <GradientOrangeRed id="or" />
+        <LinearGradient from="#ffffff" to="#ffffff" id="lg" />
+        {/*<rect width={width} height={height} fill={`url(#lg)`} />*/}
         <Tree
           top={margin.top}
           left={margin.left}
@@ -77,6 +78,7 @@ export default class extends React.Component {
                 nodes={data.descendants()}
                 layout={layout}
                 orientation={orientation}
+                language={language}
                 onNodeClick={node => {
                   if (!node.data.isExpanded) {
                     node.data.x0 = node.x

@@ -8,15 +8,16 @@ import ServiceList from './redux'
 const TreeExample = ({style, language}) => (
   <animated.div className="mainRoute" 
     style={{ ...style,
-      backgroundColor: `#eeeeae`,
-      height:'85vh',
-      boxSizing:'border-box',
-      display:'flex',
-      flexDirection:'column',
-      justifyContent:'flex-start'
+      background: `#ffffff`,
+      height: '85vh',
+      boxSizing: 'border-box',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      //padding: 10,
     }}>
     <h6 style={{position:'absolute',left:30,margin:0,padding:20,color:'black'}}>Services</h6>
-    <div style={{width:'100%',height:'75vh',display:'flex',flexDirection:'column',background:'#eeeeae',boxSizing:'border-box',borderTop:'1px solid #55bdd5'}}>
+    <div style={{width:'100%',height:'75vh',display:'flex',flexDirection:'column',background:'#ffffff',boxSizing:'border-box'}}>
       <ParentSize>
         {parent => 
           (
@@ -29,6 +30,7 @@ const TreeExample = ({style, language}) => (
                   height: '75vh',
                   width: '100vw',
                   //background: '#272b4d',
+                  padding: 10,
                 }}>
                 <div 
                   style={{
@@ -37,6 +39,8 @@ const TreeExample = ({style, language}) => (
                     alignItems: 'center',
                     height: '100%',
                     width: '60vw',
+                    margin: 0,
+                    //border: '1px solid black',
                     //background: '#272b4d',
                   }}>
                   <Tree style={{display:'flex', justifyContent:'center', alignItems: 'center'}}
@@ -52,9 +56,12 @@ const TreeExample = ({style, language}) => (
                       color: "black",
                       borderLeft: '1px solid #55bdd5',
                       padding: 10,
+                      marginLeft: 5,
                       background: '#ffffff',
                       overflowY: 'auto',
                       boxSizing: 'border-box',
+                      //border: '1px solid black',
+                      border: '1px dashed black',
                       //from="#55bdd5" to="#4f3681"
                       //background: 'radial-gradient(#4f3681,#55bdd5)',
                       //background: 'linear-gradient(to right, #55bdd5,#4f3681)',

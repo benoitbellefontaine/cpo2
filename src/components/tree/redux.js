@@ -36,7 +36,7 @@ const preamble = [
     }
 
     // presentation
-    const Item = ({ index, onClick, selected, name, color, opacity, r, g, b, id, y }) => (
+    const Item = ({ index, onClick, selected, nom, name, color, opacity, r, g, b, id, y }) => (
         <animated.div key={index}
             onClick={onClick}
             style={{
@@ -64,6 +64,7 @@ const preamble = [
     Item.propTypes = {
         //onClick: PropTypes.func.isRequired,
         selected: PropTypes.bool.isRequired,
+        nom: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         color: PropTypes.string.isRequired,
         opacity: PropTypes.object.isRequired,
@@ -131,7 +132,7 @@ const preamble = [
 
     return (
 
-        <ul style={{width:'100%',display:'flex',flexDirection:'row',flexWrap:'wrap',justifyContent:'center',margin:3,padding:0}}>
+        <ul style={{width:'100%',display:'flex',flexDirection:'row',flexWrap:'wrap',justifyContent:'center',margin:0,padding:3}}>
             
             <Content
                 native

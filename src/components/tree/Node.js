@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react'
 import { Text } from '@vx/text';
 
-function Node({ node, onClick }) {
+function Node({ node, language, onClick }) {
   const width = 140
   const height = 35
   return (
     <Fragment>
       {node.depth === 0 && (
         <Fragment>
-          <circle r={40} fill="white" stroke={ node.data.color } strokeWidth={1} onClick={onClick} />
+          <circle r={40} fill={`url(#tb)`} stroke={ node.data.color } strokeWidth={1} onClick={onClick} />
           <circle r={30} fill={ node.data.color } stroke={ node.data.color } strokeWidth={3} onClick={onClick} />
         </Fragment>
       )}
@@ -39,7 +39,7 @@ function Node({ node, onClick }) {
         fill={
           node.depth === 0 ? 'white' : node.data.isSelected ? 'white' : node.data.color
         }>
-        {node.data.name}
+        {language ? node.data.nom : node.data.name}
       </Text>
     </Fragment>
   )
