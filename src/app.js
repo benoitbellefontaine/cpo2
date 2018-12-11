@@ -24,6 +24,8 @@ import './styles2.css'
 import './routes/routes.css'
 
 const Item = Menu.Item;
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
 
 // Little helpers ...
 const url = (name, wrap = false) => `${wrap ? 'url(' : ''}https://awv3node-homepage.surge.sh/build/assets/${name}.svg${wrap ? ')' : ''}`
@@ -245,6 +247,33 @@ export default class App extends React.Component {
                                         <div className="app-titre">
                                             Consultants PME Outaouais
                                         </div>
+
+      <div style={{display:'flex',zIndex:9999,borderBottom:'0px solid #e8e8e8'}}>
+        <Menu style={{borderBottom:'0px solid #e8e8e8 !important'}}
+          onClick={this.handleClick}
+          selectedKeys={[this.state.current]}
+          mode="horizontal"
+          >
+          <Menu.Item key="mail">
+            <Icon type="mail" />Navigation One
+          </Menu.Item>
+          <Menu.Item key="app" disabled>
+            <Icon type="appstore" />Navigation Two
+          </Menu.Item>
+          <SubMenu title={<span className="submenu-title-wrapper"><Icon type="setting" />Navigation Three - Submenu</span>}>
+            <MenuItemGroup title="Item 1">
+              <Menu.Item key="setting:1">Option 1</Menu.Item>
+              <Menu.Item key="setting:2">Option 2</Menu.Item>
+            </MenuItemGroup>
+            <MenuItemGroup title="Item 2">
+              <Menu.Item key="setting:3">Option 3</Menu.Item>
+              <Menu.Item key="setting:4">Option 4</Menu.Item>
+            </MenuItemGroup>
+          </SubMenu>
+        </Menu>
+        <div style={{marginTop:10}} onClick={this.toggleLanguage}><SwitchA checkedChildren="F" unCheckedChildren="E" defaultChecked /></div>
+      </div>
+
                                         <ul className="nav">
                                           <NavLink to="/route1"><span>{this.statelanguage ? <div>Accueil</div> : <div>Home</div>}</span></NavLink>
                                           <NavLink to="/route2"><span>Services</span></NavLink>

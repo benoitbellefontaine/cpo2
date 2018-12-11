@@ -11,7 +11,7 @@ const Content = Keyframes.Trail({
   close: { delay: 500, from: { y: 0, opacity:1 }, to: { y: -50, opacity:0 }, config: config.stiff }
 });
 
-const topLeftColor = '#5cbcf0'
+const topLeftColor = '#3460cf'
 const topRightColor = '#ffffff'
 const bottomColor = '#305870'
 
@@ -105,34 +105,29 @@ class TreeExample extends React.Component { //}= ({style, language}) => {
                       
                     </div>
                 </div>
-                
-                <Content native keys={["a","b","c"]}
+                <div style={{height:'15vh',overflow:'hidden',overflowY:'auto'}}>
+                  <Content native keys={[this.state.name]}
                     config={{ tension: 200, friction: 20 }}
                     state={this.state.show ? "open" : "close"}
-                    //state={"open"}
+                    //state={"close"}
                     >
-                    {["a","b","c"].map( (step,i) => ({ y, opacity, ...props }) => (
+                    {[this.state.name].map( (step,i) => ({ y, opacity, ...props }) => (
                         <animated.div style={{
                             transform: y.interpolate(value => `translateY(${value}px)`),
-                            listStyleType: 'none',
                             opacity: opacity,
-                            //padding: '4px 4px 4px 10px',
                             margin: 1,
-                            borderRadius: 0,
-                            fontSize: '1vw',
-                            flexGrow: 1,
+                            fontSize: '1.3vw',
+                            color: 'black',
+                            fontSize: 20
                         }}>
-                          <div key={i} style={{fontSize:14}} >
-                              <i className={`fas fa-check-circle fa-1x`}></i>
-                              <span style={{width:'90%',margin:'0 auto',textAlign:'center',marginLeft:5}}>
-                                  {step}
-                              </span>
+                          <div key={i} style={{width:'100%',margin:5}}>
+                            <span style={{fontWeight:700}}>{step}</span> - {this.state.desc}
                           </div>
                         </animated.div>
                         ))
-                }
-                </Content>
-                
+                    }
+                  </Content>
+                </div>
               </div>
             )
           }

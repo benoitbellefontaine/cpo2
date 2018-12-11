@@ -5,7 +5,7 @@ export default
     "id": 0, 
     "selected":true,
     "desc": "Cliquer sur les carrés pleins pour découvrir l'arborescence. Cliquer sur les carrés vides pour découvrir les services et les inclure dans la liste sur la droite.",
-    "color":'rgb(31, 119, 180)',
+    "color": '#305870',
     "children": [
         { "nom": "Démarrage","name": "Startup",
             "id": 1, "color":'rgb(255,127,14)',

@@ -36,14 +36,13 @@ const preamble = [
     }
 
     // presentation
-    const Item = ({ index, onClick, selected, nom, name, color, opacity, r, g, b, id, y }) => (
+    const Item = ({ index, onClick, selected, nom, name, language, color, opacity, r, g, b, id, y }) => (
         <animated.div key={index}
             onClick={onClick}
             style={{
                 transform: y.interpolate(value => `translateX(${value}px)`),
                 listStyleType: 'none',
                 opacity: opacity,
-                //padding: '4px 4px 4px 10px',
                 margin: 1,
                 borderRadius: 0,
                 color: selected ? 'white' : color,
@@ -55,9 +54,9 @@ const preamble = [
             }}>
             <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <div>
-                <i className={selected ? `fas fa-check-square fa-1x` : `far fa-square fa-1x`} style={{paddingRight:5}}></i>
+                    <i className={selected ? `fas fa-check-square fa-1x` : `far fa-square fa-1x`} style={{paddingRight:5}}></i>
                 </div>
-                {id}-{name}
+                {language ? nom : name}
             </div>
         </animated.div>
     )
@@ -66,6 +65,7 @@ const preamble = [
         selected: PropTypes.bool.isRequired,
         nom: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
+        language: PropTypes.bool.isRequired,
         color: PropTypes.string.isRequired,
         opacity: PropTypes.object.isRequired,
     }
@@ -143,7 +143,7 @@ const preamble = [
                     >
                     {services.map(service => ({ y, opacity, ...props }) => (
                         <Item key={service.id} index={service.id} {...service} onClick={() => toggleService(service.id)} y={y}
-                            opacity={opacity}/>
+                            opacity={opacity} language={language}/>
                     ))}
                 </Content>
 
