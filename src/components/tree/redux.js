@@ -130,41 +130,27 @@ const preamble = [
                 
         )
 
-    return (
+        return (
 
-        <ul style={{width:'100%',display:'flex',flexDirection:'row',flexWrap:'wrap',justifyContent:'center',margin:0,padding:3}}>
-            
-            <Content
-                native
-                keys={services.map(service => service.id)}
-                config={{ tension: 200, friction: 20 }}
-                //state={show ? "open" : "close"}
-                state={"open"}
-                >
-                {services.map(service => ({ y, opacity, ...props }) => (
-                    <Item key={service.id} index={service.id} {...service} onClick={() => toggleService(service.id)} y={y}
-                        opacity={opacity}/>
-                ))}
-            </Content>
+            <ul style={{width:'100%',display:'flex',flexDirection:'row',flexWrap:'wrap',justifyContent:'center',margin:0,padding:3}}>
+                
+                <Content
+                    native
+                    keys={services.map(service => service.id)}
+                    config={{ tension: 200, friction: 20 }}
+                    //state={show ? "open" : "close"}
+                    state={"open"}
+                    >
+                    {services.map(service => ({ y, opacity, ...props }) => (
+                        <Item key={service.id} index={service.id} {...service} onClick={() => toggleService(service.id)} y={y}
+                            opacity={opacity}/>
+                    ))}
+                </Content>
 
-        </ul>
+            </ul>
 
         )
     }
-
-    /*List.propTypes = {
-        package: PropTypes.shape({
-            services: PropTypes.arrayOf(
-                PropTypes.shape({
-                    id: PropTypes.number.isRequired,
-                    selected: PropTypes.bool.isRequired,
-                    name: PropTypes.string.isRequired
-                }).isRequired,
-            ).isRequired,
-            language: PropTypes.bool.isRequired,
-        }).isRequired
-        //onServiceClick: PropTypes.func.isRequired
-    }*/
 
     List.propTypes = {
         services: PropTypes.arrayOf(
@@ -183,8 +169,7 @@ const preamble = [
       switch (filter) {
         case 'SHOW_SELECTED':
           return services.filter(t => t.selected)
-        case 'SHOW_DEMARRAGE':
-          return services.filter(t => t.type === 'demarrage')
+        //case 'SHOW_DEMARRAGE': return services.filter(t => t.type === 'demarrage')
         case 'SHOW_ALL':
         default:
           return services
@@ -194,26 +179,20 @@ const preamble = [
     const mapStateToProps = (state, ownProps) => {
         console.log('mapStateToProps ownProps',ownProps)
         return {
-            //package: {
-                services: getVisibleServices( state.services, ownProps.filter ),
-                language: ownProps.language 
-            //}   
+            services: getVisibleServices( state.services, ownProps.filter ),
+            language: ownProps.language 
         }
     }
 
-  const mapDispatchToProps = dispatch => {
-      return {
-          onServiceClick: id => {
-              console.log("mapDispatchToProps");
-              dispatch(toggleService(id))
-          }
-      }
-  }
+    const mapDispatchToProps = dispatch => {
+        return {
+            onServiceClick: id => {
+                console.log("mapDispatchToProps");
+                dispatch(toggleService(id))
+            }
+        }
+    }
 
-const ServiceList = connect(
-      mapStateToProps,
-      mapDispatchToProps
-  )(List)
-
-export default ServiceList
+//const ServiceList = connect(mapStateToProps,mapDispatchToProps)(List)
+export default connect(mapStateToProps,mapDispatchToProps)(List)
 /**/

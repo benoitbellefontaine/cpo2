@@ -1,8 +1,7 @@
 import React from 'react'
 import { Group } from '@vx/group'
 import { Tree } from '@vx/hierarchy'
-import { LinearGradient, GradientPinkBlue, GradientOrangeRed, RadialGradient,
-  GradientTealBlue } from '@vx/gradient'
+import { LinearGradient, GradientPinkBlue, GradientOrangeRed, GradientTealBlue } from '@vx/gradient'
 import { hierarchy } from 'd3-hierarchy'
 import { LinkHorizontal } from '@vx/shape';
 import Links from './Links'
@@ -31,6 +30,7 @@ export default class extends React.Component {
       width,
       height,
       language,
+      click,
       margin = {
         top: 30,
         left: 30,
@@ -88,6 +88,8 @@ export default class extends React.Component {
                   node.data.isSelected = !node.data.isSelected
                   this.forceUpdate()
                   store.dispatch({ type: 'TOGGLE_SERVICE', id:node.data.id });
+                  //document.getElementById("box").innerHTML = '<span style="font-weight:700">' + node.data.name + '</span> : ' + node.data.desc;
+                  click(node.data.name,node.data.desc)
                 }}
               />
             </Group>

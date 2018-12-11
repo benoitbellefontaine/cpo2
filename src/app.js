@@ -273,7 +273,8 @@ export default class App extends React.Component {
                                         <Route path="/route3" render={props => AppSituations({ ...props, style, language })} />
                                         <Route path="/route4" render={(props) => {return (<VParallax language={language} {...props}/>);}} />
                                         <Route path="/route5" render={(props) => VXTree({ ...props, style, language })} />
-                                        <Route path="/route6" render={(props) => SpringTree({ ...props, style, language })} />
+                                        {/*<Route path="/route6" render={(props) => SpringTree({ ...props, style, language })} />*/}
+                                        <Route path="/route6" render={(props) => {return (<SpringTree language={language} style={style} props={props}/>);}} />
                                         <Route render={() => <div>Not Found</div>} />
                                         </Switch>
                                     )}
