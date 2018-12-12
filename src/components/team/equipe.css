@@ -1,15 +1,14 @@
 /* Layout for search container */
 .search {
-    width: 45%;
-	height: 90%;
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
+    width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
     padding: 0.5em;
-    background: black;
-    box-sizing: border-box;
-    margin: 5% auto;
-    border-radius: 10px;
+    /*background: black;*/
 }
 
 .js .search {
@@ -34,14 +33,15 @@
 }
 
 .terminal__line {
-	line-height: 0.75;
+	line-height: 0.75rem;
 	overflow: hidden;
 	height: 0;
 	margin: 0;
+    padding: 0;
     white-space: nowrap;
 	color: lightgreen;
 	font-family: 'VT323', monospace;
-	font-size: 2vw;
+	font-size: 2.3vw;
 }
 
 .terminal__line::before {
@@ -115,58 +115,6 @@
     opacity: 1;
 }
 
-/*
-.search--open .terminal__line:first-child {
-	width: 19ch;
-}
-.search--open .terminal__line:nth-child(2){
-	width: 30ch;
-}
-.search--open .terminal__line:nth-child(3) {
-	width: 50ch;
-}
-.search--open .terminal__line:nth-child(4) {
-	width: 25ch;
-}
-.search--open .terminal__line:nth-child(5) {
-	width: 42ch;
-}
-.search--open .terminal__line:nth-child(6) {
-	width: 77ch;
-}
-.search--open .terminal__line {
-	animation: typing 1s steps(30, end), scaleUp 0.1s forwards;
-}
-.search--open .terminal__line:first-child {
-	animation-timing-function: steps(19, end), ease;
-}
-.search--open .terminal__line:nth-child(2) {
-    animation-delay: 2s;
-    animation-duration: 1.5s, 0.1s;
-	animation-timing-function: steps(30, end), ease;
-}
-.search--open .terminal__line:nth-child(3) {
-    animation-delay: 3.5s;
-    animation-duration: 2.50s, 0.1s;
-	animation-timing-function: steps(50, end), ease;
-}
-.search--open .terminal__line:nth-child(4) {
-    animation-delay: 6.0s;
-	animation-duration: 1.25s, 0.1s;
-	animation-timing-function: steps(25, end), ease;
-}
-.search--open .terminal__line:nth-child(5) {
-    animation-delay: 7.25s;
-	animation-duration: 2.10s, 0.1s;
-	animation-timing-function: steps(42, end), ease;
-}
-.search--open .terminal__line:nth-child(6) {
-    animation-delay: 9.35s;
-	animation-duration: 3.85s, 0.1s;
-	animation-timing-function: steps(76, end), ease;
-}
-*/
-
 /* Type animation by Lea Verou http://lea.verou.me/2012/02/simpler-css-typing-animation-with-the-ch-unit/ */
 @keyframes typing {
 	from {
@@ -178,7 +126,7 @@
 	from {
 		height: 0;
 	} to {
-		height: 1.5em;
+		height: 1em;
 	}
 }
 
@@ -229,30 +177,6 @@
 	background-size: 75% auto;*/
 }
 
-/* Buttons */
-
-.btn {
-	margin: 0;
-	padding: 0;
-	cursor: pointer;
-	border: none;
-	background: none;
-	font-size: 40px;
-}
-
-.btn:focus {
-	/*outline: none;*/
-}
-
-.btn--search {
-	font-size: 1.5em;
-}
-
-.btn--hidden {
-	pointer-events: none;
-	opacity: 0;
-}
-
 
 /* Reset Search Input */
 
@@ -267,25 +191,6 @@
 	outline: none;
 }
 
-
-/* Links */
-
-.btn {
-	text-decoration: none;
-	color: lightgreen;
-	outline: none;
-	margin:10px;
-}
-
-.hidden {
-	position: absolute;
-	overflow: hidden;
-	width: 0;
-	height: 0;
-	pointer-events: none;
-}
-
-
 /* Icons */
 
 .icon {
@@ -295,83 +200,6 @@
 	margin: 0 auto;
 	fill: currentColor;
 }
-
-
-/* Header */
-
-/*.codrops-header {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	align-items: center;
-	width: 100%;
-	padding: 2.5em 2.75em 2.5em 1.5em;
-	text-align: left;
-}
-.codrops-header__title {
-	font-size: 1em;
-	margin: 0;
-	padding: 0 0.75em;
-}
-.codrops-header__side,
-.search-wrap {
-	margin: 0 0 0 auto;
-}*/
-
-
-/* Bottom nav */
-
-.bottom-nav {
-	display: inline-block;
-	position: relative;
-	width: 100%;
-	margin: 100px 0 0 0;
-	padding: 2.5em 2.75em 2.5em 2em;
-}
-
-.image-nav {
-	position: absolute;
-	top: 25%;
-	left: 75%;
-	padding: 2em;
-}
-
-
-/* Demo links */
-/*
-.codrops-demos {
-	font-weight: bold;
-	padding: 1.25em 0;
-	text-align: right;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	-webkit-touch-callout: none;
-}
-.codrops-demos span {
-	display: inline-block;
-	margin: 0 1em 0 0;
-	vertical-align: bottom;
-}
-.codrops-demos a {
-	position: relative;
-	display: inline-block;
-	margin: 0 0.1em;
-	padding: 0 0.4em;
-}
-.codrops-demos a.current-demo::before {
-	content: '';
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 2.25em;
-	height: 2.25em;
-	margin: -1.125em 0 0 -1.125em;
-	border: 2px solid;
-	border-radius: 50%;
-}*/
-
 
 /* Top Navigation Style */
 

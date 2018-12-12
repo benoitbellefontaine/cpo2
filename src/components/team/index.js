@@ -33,10 +33,10 @@ const datacpo = [
 
 const datapierre = [
     {texte:"Recherche de Pierre Richer ...",                        text:"Search Pierre Picher...",             extra_delay:false},
-    {texte:"Expérience:",                                           text:"Experience:",          extra_delay:true},
-    {texte:"*** administrateur secteur bancaire 25 ans",            text:"*** 25 years as a bank manager",          extra_delay:true},
+    {texte:"Expérience:",                                           text:"Experience:",                         extra_delay:true},
+    {texte:"*** administrateur secteur bancaire 25 ans",            text:"*** 25 years as a bank manager",      extra_delay:false},
     {texte:"*** administrateur IQ 10 ans",                          text:"*** 10 years as a investment manager at IQ",           extra_delay:false},
-    {texte:"Forces: ",                                              text:"Strengths",extra_delay:false},
+    {texte:"Forces: ",                                              text:"Strengths",                           extra_delay:false},
     {texte:"*** démarrage (financement, plan de d'affaire, commercialisation)",     text:"Startup (financing, business plan, marketing)",extra_delay:false},
     {texte:"*** excellence (planification stratégique, rèleve)",     text:"Excellence (strategic, succession planning)",extra_delay:false},
 ];
@@ -63,7 +63,7 @@ class CPO extends React.Component {
 
     componentDidMount() {
         
-        const langue = (this.props.langue === 'FR');
+        const langue = (this.props.language);
 
         let total_duration = 0;
         let arrayTotalDuration = [];
@@ -149,7 +149,7 @@ class Pierre extends React.Component {
 
         console.log("Pierre:componentDidMount()")
 
-        const langue = (this.props.langue === 'FR');
+        const langue = (this.props.language);
 
         console.log("langue : ",this.props.langue)
 
@@ -195,8 +195,6 @@ class Pierre extends React.Component {
 
     render() {
 
-        const langue = (this.props.langue === 'FR');
-
         const {mapped} = this.state;
         if ( mapped === null ) 
             return null;
@@ -234,8 +232,6 @@ class Guy extends React.Component {
     componentDidMount() {
         // calc delays
 
-        const langue = (this.props.langue === 'FR');
-
         let total_duration = 0;
         let arrayTotalDuration = [];
 
@@ -244,7 +240,7 @@ class Guy extends React.Component {
             let extra = 0;
             if (_.extra_delay) extra = EXTRADELAYSTRING;
 
-            let animationDuration = (langue) 
+            let animationDuration = (this.props.language) 
                 ? (_.texte.length + 5) * DELAYCHARACTER
                 : (_.text.length + 5) * DELAYCHARACTER;
 
@@ -252,12 +248,12 @@ class Guy extends React.Component {
                 
             total_duration += animationDuration  + extra;
 
-            let length = (langue) 
+            let length = (this.props.language) 
                 ? _.texte.length + 5
                 : _.text.length + 5;
 
             return {
-                text: (langue) ? _.texte  : _.text,
+                text: (this.props.language) ? _.texte  : _.text,
                 length: length,
                 animation: (i === 0) 
                     ? "typing "+ animationDuration +"s steps("+ length +", end), scaleUp 0.1s forwards"
@@ -291,7 +287,7 @@ class Guy extends React.Component {
                             animationDuration: `${_.animationDuration}s`
                         };
                         return (
-                            <p key={i} className="terminal__line" style={style}>{_.text}</p>
+                            <div key={i} className="terminal__line" style={style}>{_.text}</div>
                         )
                     })
                 }
@@ -305,14 +301,14 @@ class Membres extends React.Component {
 
     render() {
 
-        const { index, langue } = this.props;
+        const { index, language } = this.props;
 
         if ( index === 1 ) 
-            return <CPO langue={langue}/>;
+            return <CPO language={language}/>;
         if ( index === 2 ) 
-            return <Pierre langue={langue} />;
+            return <Pierre language={language} />;
         if ( index === 3 ) 
-            return <Guy langue={langue} />;
+            return <Guy language={language} />;
 
         return null;
 
@@ -327,15 +323,11 @@ class Equipe extends React.Component {
             pierre:null, 
             guy:null,
             index: 0,
-            langue: null
         };
         this.handleSelect = this.handleSelect.bind(this);
     }
 
     componentDidMount() {
-
-        this.setState({langue:this.props.langue});
-
         const {cpo,pierre,guy} = this.state;
         const ref = this.refs.cpo;
         this.setState({cpo:this.refs.cpo,pierre:this.refs.pierre,guy:this.refs.guy});
@@ -372,35 +364,32 @@ class Equipe extends React.Component {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'flex-start',
-            //alignItems: 'center'
+            backgroundImage: 'linear-gradient(#247BA0, black)'
             }}>
 
-            <div style={{margin:0,padding:0,width:'100%',height:'20%',background:'#70C1B3',textAlign:'center'}}>
+            <div style={{margin:0,padding:0,width:'100%',height:'20%',textAlign:'center'}}>
                 <h6 style={{lineHeight:'120px'}}>{language ?<div>Équipe</div>:<div>Team</div>}</h6>
             </div>
 
-            <div style={{width:'100vw',height:'100%',display:'flex',justifyContent:'space-around'}}>
+            <div style={{display:'flex',width:'100%',height:'100%',justifyContent:'space-between'}}>
             
-                <div style={{width:'50%'}}>
-                    <div>
-                        <div className="glitch1" data-text="CPO" onClick={()=>this.handleSelect(1)}>CPO</div>
-                        <div className="glitch2" data-text="PIERRE_RICHER" onClick={()=>this.handleSelect(2)}>PIERRE_RICHER</div>
-                        <div className="glitch3" data-text="GUY_BOUCHER" onClick={()=>this.handleSelect(3)}>GUY_BOUCHER</div>
-                    </div>
-                    <div ref="glitch" className="glitch glitch--style-1">
-                        <div className="glitch__img"></div>
-                        <div className="glitch__img"></div>
-                        <div className="glitch__img"></div>
-                        <div className="glitch__img"></div>
-                        <div className="glitch__img"></div>
-                    </div>
+                <div>
+                    <div className="glitch1" data-text="CPO" onClick={()=>this.handleSelect(1)}>CPO</div>
+                    <div className="glitch2" data-text="PIERRE_RICHER" onClick={()=>this.handleSelect(2)}>PIERRE_RICHER</div>
+                    <div className="glitch3" data-text="GUY_BOUCHER" onClick={()=>this.handleSelect(3)}>GUY_BOUCHER</div>
+                </div>
+                <div ref="glitch" className="glitch glitch--style-1">
+                    <div className="glitch__img"></div>
+                    <div className="glitch__img"></div>
+                    <div className="glitch__img"></div>
+                    <div className="glitch__img"></div>
+                    <div className="glitch__img"></div>
                 </div>
                 
-                
-                <Membres index={this.state.index} langue={this.state.langue}/>
-                
-                
             </div>
+
+            <Membres index={this.state.index} language={this.props.language}/>
+            
         </animated.div>
     )
   }
