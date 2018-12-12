@@ -68,16 +68,16 @@ class TreeExample extends React.Component { //}= ({style, language}) => {
                     />
                   </div> 
                   <div style={{
-                        width: '40vw',
-                        height: '100%',
-                        color: "black",
-                        borderLeft: '1px solid #55bdd5',
-                        padding: 10,
-                        overflowY: 'auto',
-                        boxSizing: 'border-box',
-                        borderRadius: '10px',
-                        background: topRightColor,
-                      }}>
+                      width: '40vw',
+                      height: '100%',
+                      color: "black",
+                      borderLeft: '1px solid #55bdd5',
+                      padding: 10,
+                      overflowY: 'auto',
+                      boxSizing: 'border-box',
+                      borderRadius: '10px',
+                      background: topRightColor,
+                    }}>
                       <div style={{
                           width: '100%',
                           textAlign: 'center',
@@ -85,7 +85,7 @@ class TreeExample extends React.Component { //}= ({style, language}) => {
                           flexFlow: 'row nowrap',
                           justifyContent: 'space-around',
                           border: '1px solid black',
-                          borderRadius: '10px',
+                          borderRadius: '0px',
                           fontSize: `2vw`,
                           background:bottomColor,
                           color: `white`,
@@ -105,7 +105,7 @@ class TreeExample extends React.Component { //}= ({style, language}) => {
                       
                     </div>
                 </div>
-                <div style={{height:'15vh',overflow:'hidden',overflowY:'auto'}}>
+                <div style={{height:'15vh',overflow:'hidden',overflowY:'auto',padding:10}}>
                   <Content native keys={[this.state.name]}
                     config={{ tension: 200, friction: 20 }}
                     state={this.state.show ? "open" : "close"}
@@ -138,33 +138,4 @@ class TreeExample extends React.Component { //}= ({style, language}) => {
   }
 }
 
-export default TreeExample
-
-/*
-                <Content native keys={[1]}
-                    config={{ tension: 200, friction: 20 }}
-                    state={show ? "open" : "close"}
-                    //state={"open"}
-                    >
-                    {[this.state.name].map( (step,i) => ({ y, opacity, ...props }) => (
-                        <animated.div style={{
-                            transform: y.interpolate(value => `translateY(${value}px)`),
-                            listStyleType: 'none',
-                            opacity: opacity,
-                            //padding: '4px 4px 4px 10px',
-                            margin: 1,
-                            borderRadius: 0,
-                            fontSize: '1vw',
-                            flexGrow: 1,
-                        }}>
-                          <div key={i} style={{fontSize:14}} >
-                              <i className={`fas fa-check-circle fa-1x`}></i>
-                              <span style={{width:'90%',margin:'0 auto',textAlign:'center',marginLeft:5}}>
-                                  {step}
-                              </span>
-                          </div>
-                        </animated.div>
-                        ))
-                }
-                </Content>
-*/
+export default TreeExample;

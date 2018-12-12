@@ -132,7 +132,7 @@ const preamble = [
 
         return (
 
-            <ul style={{width:'100%',display:'flex',flexDirection:'row',flexWrap:'wrap',justifyContent:'center',margin:0,padding:3}}>
+            <ul style={{width:'100%',display:'flex',flexDirection:'row',flexWrap:'wrap',justifyContent:'center',margin:0,padding:0,paddingTop:10}}>
                 
                 <Content
                     native
