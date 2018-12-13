@@ -2,9 +2,8 @@ import React, { Fragment } from 'react'
 import { Keyframes, animated, Spring, config } from 'react-spring'
 import delay from 'delay'
 import './routes.css'
-import '../appstyles.css'
-import * as Icons from '../icons'
-import { Avatar, Form, Icon, Input, Button, Checkbox } from 'antd'
+//import * as Icons from '../icons'
+//import { Avatar, Form, Icon, Input, Button, Checkbox } from 'antd'
 
 // Creates a spring with predefined animation slots
 const Sidebar = Keyframes.Spring({
@@ -56,7 +55,7 @@ const Script = Keyframes.Spring(async next =>
   }
 )*/
 
-const Route1 = ({ style, show, language }) => (
+const Home = ({ style, show, language }) => (
   <animated.div className="mainRoute" style={{ ...style, 
     //background: `#e8c8c8`,
     height:'100%',
@@ -130,4 +129,4 @@ const Route1 = ({ style, show, language }) => (
 
   </animated.div>
 )
-export default Route1
+export default Home

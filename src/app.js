@@ -7,14 +7,13 @@ import { Avatar, Form, Icon, Input, Button, Checkbox, Menu, Switch as SwitchA } 
 import delay from 'delay'
 import * as Icons from './icons'
 import Route1 from './routes/route1'
-import Accueil from './routes/route1'
-import Equipe from './components/team'
-import AppServices from './containers/appServices'
-import AppSituations from './containers/appSituations'
+import Home from './pages/home'
+import Equipe from './pages/team'
+import AppServices from './containers/services/appServices'
+import AppSituations from './containers/situations/appSituations'
 import Commande from './routes/commande'
 import VParallax from './routes/vparallax'
-import VXTree from './components/vxtree'
-import SpringTree from './components/tree'
+import ServicesSelection from './pages/servicesSelection'
 import team from './components/team'
 
 import { LocaleProvider } from 'antd';
@@ -243,7 +242,7 @@ export default class App extends React.Component {
                 <Route
                     render={({ location, ...rest }) => (
                         <div className="fill">
-                            <Route exact path="/" render={() => <Redirect to="/accueil" />} />
+                            <Route exact path="/" render={() => <Redirect to="/home" />} />
                                 <nav style={{height:'10vh',display:'flex',flexDirection:'column'}}>
                                     <div style={{margin:10,display:'flex',justifyContent:'space-between',alignItems:'center'}}>
                                         <div className="app-titre">
@@ -257,33 +256,34 @@ export default class App extends React.Component {
           mode="horizontal"
           >
           <Menu.Item key="home">
-            <NavLink to="/accueil" style={{display:'flex'}} ><Icon type="home" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px' }} />{this.state.language ? <span>Accueil</span> : <span>Home</span>}</NavLink>
+            <NavLink to="/home" style={{display:'flex'}} ><Icon type="home" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px' }} />{this.state.language ? <span>Accueil</span> : <span>Home</span>}</NavLink>
           </Menu.Item>
           <Menu.Item key="team">
             <NavLink to="/equipe" style={{display:'flex'}} ><Icon type="team" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px' }} />{this.state.language ? <span>Équipe</span> : <span>Team</span>}</NavLink>
           </Menu.Item>
           <SubMenu title={<span className="submenu-title-wrapper"><Icon type="setting" />Services</span>}>
-            <MenuItemGroup title="Services">
+            
               <Menu.Item key="service1">
-                <NavLink to="/route6"><Icon type="setting" />{this.state.language ? <span>Offre</span> : <span>Offer</span>}</NavLink>
+                <NavLink to="/route2"><Icon type="setting" />{this.state.language ? <span>Offre</span> : <span>Offer</span>}</NavLink>
               </Menu.Item>
               <Menu.Item key="service2">
                 <NavLink to="/route6"><Icon type="setting" />{this.state.language ? <span>Sélection</span> : <span>Selection</span>}</NavLink>
               </Menu.Item>
-            </MenuItemGroup>
+              <Menu.Item key="service3">
+                <NavLink to="/route3"><Icon type="setting" />{this.state.language ? <span>Situations</span> : <span>Situations</span>}</NavLink>
+              </Menu.Item>
+            
           </SubMenu>    
-          <SubMenu title={<span className="submenu-title-wrapper"><Icon type="setting" />Services 2</span>}>
-            <MenuItemGroup title="Services 2">
-              <Menu.Item key="service1">
-                <NavLink to="/route6"><Icon type="setting" />{this.state.language ? <span>Offre</span> : <span>Offer</span>}</NavLink>
+          <SubMenu title={<span className="submenu-title-wrapper"><Icon type="contacts" />Contact</span>}>
+              <Menu.Item key="question">
+                <NavLink to="/route6"><Icon type="form" />{this.state.language ? <span>Questions</span> : <span>Questions</span>}</NavLink>
               </Menu.Item>
-              <Menu.Item key="service2">
-                <NavLink to="/route6"><Icon type="setting" />{this.state.language ? <span>Sélection</span> : <span>Selection</span>}</NavLink>
+              <Menu.Item key="contact">
+                <NavLink to="/route6"><Icon type="mail" />{this.state.language ? <span>Contact</span> : <span>Contact</span>}</NavLink>
               </Menu.Item>
-            </MenuItemGroup>
           </SubMenu>
         </Menu>
-        <div style={{marginTop:10}} onClick={this.toggleLanguage}><SwitchA checkedChildren="F" unCheckedChildren="E" defaultChecked /></div>
+        <div style={{marginTop:10}} onClick={this.toggleLanguage}><SwitchA style={{backgroundColor:'#3da300'}} checkedChildren="F" unCheckedChildren="E" defaultChecked /></div>
       </div>
 
                                         {/*<ul className="nav">
@@ -291,7 +291,6 @@ export default class App extends React.Component {
                                           <NavLink to="/route2"><span>Services</span></NavLink>
                                           <NavLink to="/route3"><span>{this.state.language ? <div>Cycles</div> : <div>Lifecycles</div>}</span></NavLink>
                                           <NavLink to="/route4"><span>{this.state.language ? <div>Parallax</div> : <div>Parallax</div>}</span></NavLink>
-                                          <NavLink to="/route5"><span>{this.state.language ? <div>vxTree</div> : <div>vxTree</div>}</span></NavLink>
                                           <NavLink to="/route6"><span>{this.state.language ? <div>sTree</div> : <div>sTree</div>}</span></NavLink>
                                           <li className="navItem" onClick={this.toggleOrder} style={{display:'flex'}}><Icon type="gift" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px' }} /> Commandes</li>
                                           <li className="navItem" onClick={this.toggle} style={{display:'flex'}}><Icon type="mail" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px'  }} /> Contact</li>
@@ -309,14 +308,12 @@ export default class App extends React.Component {
                                 leave={{ transform: 'translateY(500px)', opacity: 0 }}>
                                     {(style) => (
                                         <Switch location={location}>
-                                          <Route path="/accueil" render={props => Accueil({ ...props, style })} />
+                                          <Route path="/home" render={props => Home({ ...props, style })} />
                                           <Route path="/equipe" render={(props) => {return (<Equipe language={language} style={style} props={props}/>);}} />
                                           <Route path="/route2" render={props => AppServices({ ...props, style })} />
                                           <Route path="/route3" render={props => AppSituations({ ...props, style, language })} />
                                           <Route path="/route4" render={(props) => {return (<VParallax language={language} {...props}/>);}} />
-                                          <Route path="/route5" render={(props) => VXTree({ ...props, style, language })} />
-                                          {/*<Route path="/route6" render={(props) => SpringTree({ ...props, style, language })} />*/}
-                                          <Route path="/route6" render={(props) => {return (<SpringTree language={language} style={style} props={props}/>);}} />
+                                          <Route path="/route6" render={(props) => {return (<ServicesSelection language={language} style={style} props={props}/>);}} />
                                           <Route render={() => <div>Not Found</div>} />
                                         </Switch>
                                     )}
