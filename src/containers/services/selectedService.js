@@ -7,7 +7,7 @@ const getVisibleServices = (services, filter) => {
   switch (filter) {
     case VisibilityFilters.SHOW_SELECT_ONLY:
       return services.filter(t => t.selectOnly)
-      throw new Error('Unknown filter: ' + filter)
+      throw new Error('Unknown filter: ' + filter) 
   }
 }
 

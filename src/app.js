@@ -270,17 +270,17 @@ export default class App extends React.Component {
                 <NavLink to="/route6"><Icon type="setting" />{this.state.language ? <span>Sélection</span> : <span>Selection</span>}</NavLink>
               </Menu.Item>
               <Menu.Item key="service3">
-                <NavLink to="/route3"><Icon type="setting" />{this.state.language ? <span>Situations</span> : <span>Situations</span>}</NavLink>
+                <NavLink to="/route3"><Icon type="clock-circle" />{this.state.language ? <span>Cycles</span> : <span>LifeCycles</span>}</NavLink>
               </Menu.Item>
             
           </SubMenu>    
           <SubMenu title={<span className="submenu-title-wrapper"><Icon type="contacts" />Contact</span>}>
-              <Menu.Item key="question">
-                <NavLink to="/route6"><Icon type="form" />{this.state.language ? <span>Questions</span> : <span>Questions</span>}</NavLink>
-              </Menu.Item>
-              <Menu.Item key="contact">
-                <NavLink to="/route6"><Icon type="mail" />{this.state.language ? <span>Contact</span> : <span>Contact</span>}</NavLink>
-              </Menu.Item>
+            <Menu.Item key="question">
+              <NavLink to="/route6"><Icon type="form" />{this.state.language ? <span>Questions</span> : <span>Questions</span>}</NavLink>
+            </Menu.Item>
+            <Menu.Item key="contact">
+              <NavLink to="/route6"><Icon type="mail" />{this.state.language ? <span>Contact</span> : <span>Contact</span>}</NavLink>
+            </Menu.Item>
           </SubMenu>
         </Menu>
         <div style={{marginTop:10}} onClick={this.toggleLanguage}><SwitchA style={{backgroundColor:'#3da300'}} checkedChildren="F" unCheckedChildren="E" defaultChecked /></div>

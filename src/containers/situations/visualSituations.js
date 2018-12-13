@@ -16,7 +16,7 @@ const getVisibleSituations = (situations, filter) => {
 } 
 
 const mapStateToProps = state => ({
-  situations: getVisibleSituations(state.situations, VisibilityFilters.SHOW_ALL)
+  situations: getVisibleSituations(state.cycles, VisibilityFilters.SHOW_ALL)
 })
 
 const mapDispatchToProps = dispatch => ({
