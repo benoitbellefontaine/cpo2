@@ -366,7 +366,7 @@ class Equipe extends React.Component {
             style={{ ...this.props.style,
             background: `#247BA0`,
             width: '100vw',
-            height: '90vh',
+            height: '100%',
             boxSizing: 'border-box',
             display: 'flex',
             flexDirection: 'column',
@@ -375,12 +375,12 @@ class Equipe extends React.Component {
             }}>
 
             <div style={{margin:0,padding:0,width:'100%',height:'20%',textAlign:'center'}}>
-                <h6 style={{lineHeight:'120px',color:'white'}}>{language ?<div>Équipe</div>:<div>Team</div>}</h6>
+                <h1 style={{lineHeight:'120px',color:'white'}}>{language ?<div>Équipe</div>:<div>Team</div>}</h1>
             </div>
 
-            <div style={{display:'flex',width:'100%',height:'100%',justifyContent:'space-around'}}>
+            <div style={{display:'flex',width:'100%',height:'auto',justifyContent:'space-around'}}>
             
-                <div>
+                <div style={{display:'flex',flexDirection:'column'}}>
                     <div className="glitch1" data-text="CPO"            onClick={()=>this.handleSelect(1)}>CPO</div>
                     <div className="glitch2" data-text="PIERRE_RICHER"  onClick={()=>this.handleSelect(2)}>PIERRE_RICHER</div>
                     <div className="glitch3" data-text="GUY_BOUCHER"    onClick={()=>this.handleSelect(3)}>GUY_BOUCHER</div>
@@ -393,14 +393,6 @@ class Equipe extends React.Component {
                     <div className="glitch__img"></div>
                     <div className="glitch__img"></div>
                 </div>
-
-                {/*<div ref="glitch_name" className="glitch_name">
-                    <div className="glitch__img"></div>
-                    <div className="glitch__img"></div>
-                    <div className="glitch__img"></div>
-                    <div className="glitch__img"></div>
-                    <div className="glitch__img"></div>
-                </div>*/}
                 
             </div>
 

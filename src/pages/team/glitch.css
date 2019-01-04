@@ -28,7 +28,7 @@
 .glitch--style-1 {
 	--gap-horizontal: 20px;
 	--gap-vertical: 2px;
-	--time-anim: 2.25s;
+	--time-anim: 22.5s;
 	--blend-mode-1: none;
 	--blend-mode-2: none;
 	--blend-mode-3: none;
@@ -44,7 +44,7 @@
 .glitch--style-2 {
 	--gap-horizontal: 20px;
 	--gap-vertical: 2px;
-	--time-anim: 2.25s;
+	--time-anim: 22.5s;
 	--blend-mode-1: none;
 	--blend-mode-2: none;
 	--blend-mode-3: none;
@@ -60,7 +60,7 @@
 .glitch--style-3 {
 	--gap-horizontal: 20px;
 	--gap-vertical: 2px;
-	--time-anim: 2.25s;
+	--time-anim: 22.5s;
 	--blend-mode-1: none;
 	--blend-mode-2: none;
 	--blend-mode-3: none;
@@ -430,15 +430,14 @@
 	}
 }
 
-
 /* TEXT Glitch */
 
 .glitch1 {
   color: white;
   font-size: 20px;
   position: relative;
-  /*width: 100%;
-  margin: 0 auto;*/
+  height: 30px;
+  /*margin: 0 auto;*/
   cursor: pointer;
 }
 
@@ -446,8 +445,8 @@
   color: white;
   font-size: 20px;
   position: relative;
-  /*width: 100%;
-  margin: 0 auto;*/
+  height: 30px;
+  /*margin: 0 auto;*/
   cursor: pointer;
 }
 
@@ -455,8 +454,8 @@
   color: white;
   font-size: 20px;
   position: relative;
-  /*width: 100%;
-  margin: 0 auto;*/
+  height: 30px;
+  /*margin: 0 auto;*/
   cursor: pointer;
 }
 
@@ -525,9 +524,12 @@
     clip: rect(25px, 9999px, 55px, 0);
   }
 }
+
 .glitch1:after {
-  content: attr(data-text);
-  position: absolute;
+	content: attr(data-text);
+	/*content: 'data-text';*/
+	position: absolute;
+	height: 30px;
   left: 2px;
   text-shadow: -1px 0 red;
   top: 0;
@@ -539,7 +541,8 @@
 
 .glitch2:after {
   content: attr(data-text);
-  position: absolute;
+	position: absolute;
+	height: 30px;
   left: 2px;
   text-shadow: -1px 0 red;
   top: 0;
@@ -551,7 +554,8 @@
 
 .glitch3:after {
   content: attr(data-text);
-  position: absolute;
+	position: absolute;
+	height: 30px;
   left: 2px;
   text-shadow: -1px 0 red;
   top: 0;
@@ -628,10 +632,11 @@
 }
 .glitch1:before {
   content: attr(data-text);
-  position: absolute;
+	position: absolute;
+	height: 30px;
   left: -2px;
   text-shadow: 1px 0 blue;
-  top: 0;
+  top: -10px;
   color: white;
   overflow: hidden;
   clip: rect(0, 900px, 0, 0);
@@ -640,7 +645,8 @@
 
 .glitch2:before {
   content: attr(data-text);
-  position: absolute;
+	position: absolute;
+	height: 30px;
   left: -2px;
   text-shadow: 1px 0 blue;
   top: 0;
