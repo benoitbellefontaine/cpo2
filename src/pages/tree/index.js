@@ -26,16 +26,16 @@ constructor(props) {
     };
   }
 
-  nodeClick = (name,desc) => {
-    console.log(name,' + ',desc);
-    this.setState({name:name,desc:desc,show:true})
+  nodeClick = (nom,name,descf,desce) => {
+    console.log(nom,' + ',name,' + ',descf,' + ',desce);
+    this.setState({nom:nom,name:name,descf:descf,desce:desce,show:true})
   }
 
   render () {
+    const {language} = this.props;
     return (
     <animated.div className="mainRoute" 
       style={{ ...this.props.style,
-        //background: `#ffffff`,
         height: '85vh',
         boxSizing: 'border-box',
         display: 'flex',
@@ -43,7 +43,7 @@ constructor(props) {
         justifyContent: 'flex-start',
         background: 'linear-gradient(#3da300, white)'
       }}>
-      <h6 style={{position:'absolute',left:30,margin:0,padding:20,color:'black'}}>Services</h6>
+      <h1 style={{position:'absolute',left:30,margin:0,padding:20,color:'black'}}>Services</h1>
       <div style={{width:'100%',height:'75vh',display:'flex',flexDirection:'column',
         //background:'#ffffff',
         boxSizing:'border-box'}}>
@@ -74,9 +74,9 @@ constructor(props) {
                       data={data}
                       width={parent.width * 0.6}
                       height={parent.height * 1.0}
-                      language={this.props.language}
+                      language={language}
                       open={true}
-                      click={(name,desc)=>this.nodeClick(name,desc)}
+                      click={(nom,name,descf,desce)=>this.nodeClick(nom,name,descf,desce)}
                     />
                   </div> 
                   <div style={{
@@ -124,9 +124,32 @@ constructor(props) {
                   borderTop: '1px solid #c8c8c8',
                   //background: '#e8c8c8'
                   }}>
-                    <div style={{width:'100%',margin:5}}>
-                      <span style={{fontWeight:700}}>{this.state.name}</span> - {this.state.desc}
-                    </div>
+                  <Content 
+                    native
+                    items={[this.state.name]}
+                    keys={[this.state.name]}
+                    config={{ tension: 200, friction: 20 }}
+                    state={this.state.show ? "open" : "close"}
+                    //state={"close"}
+                    >
+                    {(item,i) => ({ y, opacity, ...props }) => (
+                      <animated.div style={{
+                          transform: y.interpolate(value => `translateY(${value}px)`),
+                          opacity: opacity,
+                          margin: 1,
+                          fontSize: '1.3vw',
+                          color: 'black',
+                          fontSize: 20,
+                          }}>
+                          <div style={{width:'100%',margin:5}}>
+                            <span style={{fontWeight:700}}>
+                              {language ? this.state.nom : this.state.name }</span>
+                              {' '}:{' '}{language ? this.state.descf : this.state.desce }
+                          </div>
+                      </animated.div>
+                      )
+                    }
+                  </Content>
                 </div>
               </div>
             )

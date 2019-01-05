@@ -13,14 +13,14 @@ const preambule = [
     "Cliquez sur le cercle Services",
     "Cliquez sur le cycle qui décrit le mieux votre situation actuelle",
     "Sélectionnez le ou les services dans le cycle pré-sélectionné",
-    "Choisissez un autre cycle pour explorer tous les services offerts par CPO"
+    "Choisissez les autres cycles et explorer tous les services offerts par CPO"
 ]
 
 const preamble = [
     "Click on the Services circle",
     "Click on the cycle that best describes your current situation",
     "Select any service within the selected cycle",
-    "Select another cycle to explore all the services offered by CPO"
+    "Select other cycles and explore all the services offered by CPO"
 ]
 
 /**/
@@ -69,81 +69,61 @@ const preamble = [
         opacity: PropTypes.object.isRequired,
     }
 
-    const List = ({ services, language }) => {//, onServiceClick }) => {
-    if (services.length === 0)
+    const List = ({ services, language }) => {
 
-        return (
+        if (services.length === 0)
+            return (
+                <div style={{margin:'10px',padding:'10px',fontSize:20}}>
 
-            <div style={{margin:'10px',padding:'10px',fontSize:20}}>
+                    <div>{language ? <div>Commencez la sélection des services</div> : <div>Start selecting services</div>}</div>
+                    <Content
+                        native
+                        items={language ? preambule : preamble}
+                        keys={language ? preambule.map((item,i) => i)  : preamble.map((item,i) => i)}
+                        config={{ tension: 200, friction: 20 }}
+                        //state={show ? "open" : "close"}
+                        state={"open"}
+                        >
+                        {(item,i) => ({ y, opacity, ...props }) => (
+                            <animated.div style={{
+                                transform: y.interpolate(value => `translateY(${value}px)`),
+                                listStyleType: 'none',
+                                opacity: opacity,
+                                //padding: '4px 4px 4px 10px',
+                                margin: 1,
+                                borderRadius: 0,
+                                fontSize: '1vw',
+                                flexGrow: 1,
+                            }}>
+                            <div key={i} style={{fontSize:14}} >
+                                <i className={`fas fa-check-circle fa-1x`}></i>
+                                <span style={{width:'90%',margin:'0 auto',textAlign:'center',marginLeft:5}}>
+                                    {item}
+                                </span>
+                            </div>
+                            </animated.div>
+                        )}
+                    </Content>
+                </div>
+            )
 
-                <div>{language ? <div>Commencez la sélection des services</div> : <div>Start selecting services</div>}</div>
-                <Content
-                    native
-                    keys={preambule.map(step => step)}
-                    config={{ tension: 200, friction: 20 }}
-                    //state={show ? "open" : "close"}
-                    state={"open"}
-                    >
-                    {language 
-                        ? preambule.map( (step,i) => ({ y, opacity, ...props }) => (
-                        <animated.div style={{
-                            transform: y.interpolate(value => `translateY(${value}px)`),
-                            listStyleType: 'none',
-                            opacity: opacity,
-                            //padding: '4px 4px 4px 10px',
-                            margin: 1,
-                            borderRadius: 0,
-                            fontSize: '1vw',
-                            flexGrow: 1,
-                        }}>
-                        <div key={i} style={{fontSize:14}} >
-                            <i className={`fas fa-check-circle fa-1x`}></i>
-                            <span style={{width:'90%',margin:'0 auto',textAlign:'center',marginLeft:5}}>
-                                {step}
-                            </span>
-                        </div>
-                        </animated.div>
-                        ))
-                        : preamble.map( (step,i) => ({ y, opacity, ...props }) => (
-                        <animated.div style={{
-                            transform: y.interpolate(value => `translateY(${value}px)`),
-                            listStyleType: 'none',
-                            opacity: opacity,
-                            //padding: '4px 4px 4px 10px',
-                            margin: 1,
-                            borderRadius: 0,
-                            fontSize: '1vw',
-                            flexGrow: 1,
-                        }}>
-                        <div key={i} style={{fontSize:14}} >
-                            <i className={`fas fa-check-circle fa-1x`}></i>
-                            <span style={{width:'90%',margin:'0 auto',textAlign:'center',marginLeft:5}}>
-                                {step}
-                            </span>
-                        </div>
-                        </animated.div>
-                    ))
-                }
-                </Content>
-            </div>
-                
-        )
-
-        return (
+        return ( 
 
             <ul style={{width:'100%',display:'flex',flexDirection:'row',flexWrap:'wrap',justifyContent:'center',margin:0,padding:0,paddingTop:10}}>
                 
                 <Content
                     native
+                    items={services.map(service => service)}
                     keys={services.map(service => service.id)}
-                    config={{ tension: 200, friction: 20 }}
+                    config={{ tension: 400, friction: 20 }}
+                    reverse={"close"}
                     //state={show ? "open" : "close"}
                     state={"open"}
                     >
-                    {services.map(service => ({ y, opacity, ...props }) => (
+                    { service => ({ y, opacity, ...props }) => (
                         <Item key={service.id} index={service.id} {...service} onClick={() => toggleService(service.id)} y={y}
                             opacity={opacity} language={language}/>
-                    ))}
+                    )}
                 </Content>
 
             </ul>

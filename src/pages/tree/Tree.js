@@ -26,8 +26,8 @@ export default class extends React.Component {
       click,
       margin = {
         top: 30,
-        left: 30,
-        right: 30,
+        left: 50,
+        right: 100,
         bottom: 30,
       },
     } = this.props
@@ -76,7 +76,7 @@ export default class extends React.Component {
                     this.forceUpdate()
                     store.dispatch({ type: 'TOGGLE_SERVICE', id:node.data.id });
                     //document.getElementById("box").innerHTML = '<span style="font-weight:700">' + node.data.name + '</span> : ' + node.data.desc;
-                    click(node.data.name,node.data.desc)
+                    click(node.data.nom,node.data.name,node.data.descf,node.data.desce)
                   }}
                 />
               </Group>
