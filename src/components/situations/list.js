@@ -41,19 +41,19 @@ const Content = Keyframes.Trail({
           ))}
         </Content>*/}
 
-const List = ({ situations, selectSituation }) => (
+const List = ({ cycles, selectCycle }) => (
 
     <ul style={{width:'100%',height:'inherit',display:'flex',flexDirection:'row',flexWrap:'wrap',justifyContent:'center',margin:3,padding:0}}>
         
         <Content
             native
-            keys={situations.map(situation => situation.id)}
+            keys={cycles.map(situation => situation.id)}
             config={{ tension: 200, friction: 20 }}
             //state={show ? "open" : "close"}
             state={"open"}
             >
-            {situations.map(situation => ({ y, opacity, ...props }) => (
-                <Item key={situation.id} {...situation} onClick={() => selectSituation(situation.id)} y={y}
+            {cycles.map(situation => ({ y, opacity, ...props }) => (
+                <Item key={situation.id} {...situation} onClick={() => selectCycle(situation.id)} y={y}
                     opacity={opacity}/>
             ))}
         </Content>
@@ -63,7 +63,7 @@ const List = ({ situations, selectSituation }) => (
 )
 
 List.propTypes = {
-    situations: PropTypes.arrayOf(
+    cycles: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
             selected: PropTypes.bool.isRequired,
@@ -71,7 +71,7 @@ List.propTypes = {
             //color: PropTypes.string.isRequired,
         }).isRequired
     ).isRequired,
-    selectSituation: PropTypes.func.isRequired
+    selectCycle: PropTypes.func.isRequired
 }
 
 export default List

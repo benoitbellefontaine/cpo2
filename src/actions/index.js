@@ -25,9 +25,9 @@ export const selectService = id => {
     }
 }
 
-export const selectSituation = id => {
+export const selectCycle = id => {
     return {
-        type: 'SELECT_SITUATION',
+        type: 'SELECT_CYCLE',
         id
     }
 }

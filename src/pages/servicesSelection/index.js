@@ -138,7 +138,7 @@ constructor(props) {
                             fontSize: '1.3vw',
                             color: 'black',
                             fontSize: 20,
-                        }}>
+                          }}>
                           <div key={i} style={{width:'100%',margin:5}}>
                             <span style={{fontWeight:700}}>{step}</span> - {this.state.desc}
                           </div>

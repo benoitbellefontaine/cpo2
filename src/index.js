@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import App from './app'
+//import Questions from './pages/parallax_questions'
 
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';

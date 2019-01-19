@@ -6,15 +6,14 @@ import { Transition, Keyframes, animated, config } from 'react-spring'
 import { Avatar, Form, Icon, Input, Button, Checkbox, Menu, Switch as SwitchA } from 'antd'
 import delay from 'delay'
 import * as Icons from './icons'
-import Route1 from './routes/route1'
 import Home from './pages/home'
 import Equipe from './pages/team'
 import AppServices from './containers/services/appServices'
-import AppSituations from './containers/situations/appSituations'
+import AppSituations from './containers/cycles'
 import Commande from './routes/commande'
-import VParallax from './routes/vparallax'
+import Questions from './pages/parallax_questions'
 import ServicesSelection from './pages/servicesSelection'
-import team from './components/team'
+//import team from './components/team'
 
 import { LocaleProvider } from 'antd';
 import fr_FR from 'antd/lib/locale-provider/fr_FR';
@@ -276,7 +275,7 @@ export default class App extends React.Component {
           </SubMenu>    
           <SubMenu title={<span className="submenu-title-wrapper"><Icon type="contacts" />Contact</span>}>
             <Menu.Item key="question">
-              <NavLink to="/route6"><Icon type="form" />{this.state.language ? <span>Questions</span> : <span>Questions</span>}</NavLink>
+              <NavLink to="/route4"><Icon type="form" />{this.state.language ? <span>Questions</span> : <span>Questions</span>}</NavLink>
             </Menu.Item>
             <Menu.Item key="contact">
               <NavLink to="/route6"><Icon type="mail" />{this.state.language ? <span>Contact</span> : <span>Contact</span>}</NavLink>
@@ -312,7 +311,7 @@ export default class App extends React.Component {
                                           <Route path="/equipe" render={(props) => {return (<Equipe language={language} style={style} props={props}/>);}} />
                                           <Route path="/route2" render={props => AppServices({ ...props, style })} />
                                           <Route path="/route3" render={props => AppSituations({ ...props, style, language })} />
-                                          <Route path="/route4" render={(props) => {return (<VParallax language={language} {...props}/>);}} />
+                                          <Route path="/route4" render={(props) => {return (<Questions language={language} style={style} {...props}/>);}} />
                                           <Route path="/route6" render={(props) => {return (<ServicesSelection language={language} style={style} props={props}/>);}} />
                                           <Route render={() => <div>Not Found</div>} />
                                         </Switch>
@@ -344,7 +343,7 @@ export default class App extends React.Component {
               </animated.div>
             )}
           </Sidebar>
-          </div>
+        </div>
 
         <div style={{position:'absolute',top:0,left:0,height:'100vh',overflow:'hidden'}}>
         { 

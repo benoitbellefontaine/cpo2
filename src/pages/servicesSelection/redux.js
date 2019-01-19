@@ -96,13 +96,13 @@ const preamble = [
                             borderRadius: 0,
                             fontSize: '1vw',
                             flexGrow: 1,
-                        }}>
-                        <div key={i} style={{fontSize:14}} >
-                            <i className={`fas fa-check-circle fa-1x`}></i>
-                            <span style={{width:'90%',margin:'0 auto',textAlign:'center',marginLeft:5}}>
-                                {step}
-                            </span>
-                        </div>
+                            }}>
+                            <div key={i} style={{fontSize:14}} >
+                                <i className={`fas fa-check-circle fa-1x`}></i>
+                                <span style={{width:'90%',margin:'0 auto',textAlign:'center',marginLeft:5}}>
+                                    {step}
+                                </span>
+                            </div>
                         </animated.div>
                         ))
                         : preamble.map( (step,i) => ({ y, opacity, ...props }) => (
@@ -115,13 +115,13 @@ const preamble = [
                             borderRadius: 0,
                             fontSize: '1vw',
                             flexGrow: 1,
-                        }}>
-                        <div key={i} style={{fontSize:14}} >
-                            <i className={`fas fa-check-circle fa-1x`}></i>
-                            <span style={{width:'90%',margin:'0 auto',textAlign:'center',marginLeft:5}}>
-                                {step}
-                            </span>
-                        </div>
+                            }}>
+                            <div key={i} style={{fontSize:14}} >
+                                <i className={`fas fa-check-circle fa-1x`}></i>
+                                <span style={{width:'90%',margin:'0 auto',textAlign:'center',marginLeft:5}}>
+                                    {step}
+                                </span>
+                            </div>
                         </animated.div>
                     ))
                 }

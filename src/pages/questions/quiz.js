@@ -7,11 +7,11 @@ import QuestionCount from './questioncount';
 import AnswerOption from './answeroption';
 
 //import { connect } from 'react-redux';
-import ActivityList     from '../redux-material/activitylist.js';
-import QualiteList      from '../redux-material/qualitylist.js';
-import SituationList    from '../redux-material/situationlist.js';
-import ChiffresList     from '../redux-material/chiffreslist.js';
-import DefiList         from '../redux-material/defis.js';
+//import ActivityList     from '../redux-material/activitylist.js';
+//import QualiteList      from '../redux-material/qualitylist.js';
+import Cycles    from '../containers/cycles';
+//import ChiffresList     from '../redux-material/chiffreslist.js';
+//import DefiList         from '../redux-material/defis.js';
 
 /* ------------ SPRING ------------ */
     const startY = 25;
@@ -66,15 +66,15 @@ function Quiz(props) {
         );
     }
 
-    function renderActivityList() { return <ActivityList />;}
+    //function renderActivityList() { return <ActivityList />;}
 
-    function renderQualiteList() { return <QualiteList />; } 
+    //function renderQualiteList() { return <QualiteList />; } 
 
-    function renderChiffresList() { return <ChiffresList />; } 
+    //function renderChiffresList() { return <ChiffresList />; } 
 
-    function renderSituationList() { return <SituationList />; } 
+    function renderCycles() { return <Cycles />; } 
 
-    function renderDefiList() { return <DefiList />; } 
+    //function renderDefiList() { return <DefiList />; } 
 
     return (
         <div style={{
@@ -137,11 +137,11 @@ function Quiz(props) {
                                             WebkitTransform: `translate3d(0, ${style.y}px, 0)`,
                                             transform: `translate3d(0, ${style.y}px, 0)` 
                                         }}>
-                                        {props.questionId === 1 ? renderActivityList() : null}
-                                        {props.questionId === 2 ? renderQualiteList() : null}
-                                        {props.questionId === 3 ? renderChiffresList() : null}
-                                        {props.questionId === 4 ? renderSituationList() : null}
-                                        {props.questionId === 5 ? renderDefiList() : null}
+                                        {props.questionId === 1 ? renderCycles() : null}
+                                        {props.questionId === 2 ? renderCycles() : null}
+                                        {props.questionId === 3 ? renderCycles() : null}
+                                        {props.questionId === 4 ? renderCycles() : null}
+                                        {props.questionId === 5 ? renderCycles() : null}
                                     </div>
                                 );
                                 case 2: return (

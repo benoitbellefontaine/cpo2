@@ -46,7 +46,7 @@ export default
                 },
             ]
         },
-        { "nom": "Court terme", "name": "Short term",
+        { "nom": "Court terme", "name": "Short-term",
             "id": 2,"selected":false,"color":'rgb(44,160,44)',
             "desc": "Votre entreprise a le vent dans les voiles mais sa vitesse de croisière n'est pas au niveau de vos espérances (les problèmes sont difficilement identifiables et une consultation externe est requise). Les services que nous offront pour ce cycle pourront faire la différence entre la vitesse actuelle et une meilleure vitesse de croisiêre.",
             "children": [
@@ -57,7 +57,7 @@ export default
                 { "id": 18,"nom": "préparation des budgets annuels","name": "preparation of annual budgets", "desc": "Après un an d'existence, cette étape est l'extension des prévisions budgétaires du cycle démarrage. Étape essentielle à réaliser chaque année.","color":'rgb(44,160,44)',"selected":false}
             ]
         },
-        { "nom": "Moyen terme" ,"name": "Middle term" ,
+        { "nom": "Moyen terme" ,"name": "Medium-term" ,
             "id": 3,"selected":false,"color":'rgb(214,39,40)',
             "desc": "Une vision à long terme est maintenant nécessaire pour votre entreprise pour emprunter la voie de la pérennité. Que ce soit pour parer à un changement de garde soudain (plan de relève), vérifier l'état actuel de la situation (analyse des états financiers) ou améliorer les méthodes actuelles (analyse du prix de revient), nous proposons maintenant des outils spécialisés pour assurer la pérennité de votre entreprise.",
             "children": [
