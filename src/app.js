@@ -3,9 +3,12 @@ import ReactDOM from 'react-dom'
 import { HashRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
 import { Parallax } from 'react-spring'
 import { Transition, Keyframes, animated, config } from 'react-spring'
-import { Avatar, Form, Icon, Input, Button, Checkbox, Menu, Switch as SwitchA } from 'antd'
+import { Avatar, Form, Icon, Input, Button, Checkbox, Menu, Switch as SwitchANTD } from 'antd'
 import delay from 'delay'
 import * as Icons from './icons'
+//import styled from 'styled-components'
+
+// PAGES
 import Home from './pages/home'
 import Equipe from './pages/team'
 import AppServices from './containers/services/appServices'
@@ -22,6 +25,21 @@ import './appstyles.css'
 import 'antd/dist/antd.css'
 import './styles2.css'
 import './routes/routes.css'
+
+import './styles.css'
+
+const style = {
+  fill : {
+    position: "relative",
+    width: "100%",
+    height: "90vh",
+    display: "flex",
+    flexDirection: "column",
+    //line-height: "0px";
+    background: "#272727",
+    background: "#ffffff",
+  }
+}
 
 const Item = Menu.Item;
 const SubMenu = Menu.SubMenu;
@@ -213,10 +231,43 @@ const items2 = [
 ]
 
 export default class App extends React.Component {
-  state = { open: false, openOrder: false, language: true }
+  state = { open: false, openOrder: false, language: true, narrow_menu: false,
+        /*submenu: [
+            {
+              id: 0,
+              title: 'GreenGreenGreenGreen',
+              selected: false,
+              link: '/green',
+              key: 'location'
+            },
+            {
+                id: 1,
+                title: 'Home',
+                selected: false,
+                link: '/home',
+                key: 'location'
+            },
+            {
+                id: 2,
+                title: 'Route 2',
+                selected: false,
+                link: '/route2',
+                key: 'location'
+            },
+            {
+                id: 3,
+                title: 'Route 2',
+                selected: false,
+                link: '/route2',
+                key: 'location'
+            },
+        ] */
+  }
   toggle = () => this.setState(state => ({ open: !state.open }))
   toggleOrder = () => this.setState(state => ({ openOrder: !state.openOrder }))
   toggleLanguage = () => this.setState(state => ({ language: !state.language }))
+  toggleMenu = () => this.setState(state => ({ narrow_menu: !state.narrow_menu }))
+
   render() {
     const state = this.state.open === undefined ? 'peek' : this.state.open ? 'open' : 'close'
     const stateOrder = this.state.openOrder ? 'open' : 'close'
@@ -240,62 +291,56 @@ export default class App extends React.Component {
             <Router>
                 <Route
                     render={({ location, ...rest }) => (
-                        <div className="fill">
+                        <div style={style.fill}>
                             <Route exact path="/" render={() => <Redirect to="/home" />} />
-                                <nav style={{height:'10vh',display:'flex',flexDirection:'column'}}>
-                                    <div style={{margin:10,display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                                        <div className="app-titre">
-                                            Consultants PME Outaouais
+                                <nav style={{backgroundColor:'#fff',display:'flex',justifyContent:'space-between',alignItems:'center',padding:'0 10px 0 10px'}}>
+                                  <div className='app-header-title'>
+                                    Consultants PME Outaouais
+                                  </div>
+                                  <div style={{backgroundColor:'#fff',alignItems:'center',display:'flex'}}>
+                                    <div className="navNarrow">
+                                      <i className="fa fa-bars fa-2x" style={{color:'#3da300'}} onClick={this.toggleMenu}></i>
+                                      {this.state.narrow_menu 
+                                        ?
+                                        <div className="narrowLinks" style={{display:'block'}}>
+                                            <a href="#" onClick={this.toggleMenu}>Link 1</a>
+                                            <a href="#" onClick={this.burgerToggle}>Link 2</a>
+                                            <a href="#" onClick={this.burgerToggle}>Link 3</a>
+                                            <a href="#" onClick={this.toggleMenu}>Link 1</a>
+                                            <a href="#" onClick={this.burgerToggle}>Link 2</a>
+                                            <a href="#" onClick={this.burgerToggle}>Link 3</a>
                                         </div>
-
-      <div style={{display:'flex',zIndex:9999,borderBottom:'0px solid #e8e8e8'}}>
-        <Menu style={{borderBottom:'0px solid #e8e8e8',margin:0,padding:0,height:30}}
-          onClick={this.handleClick}
-          selectedKeys={[this.state.current]}
-          mode="horizontal"
-          >
-          <Menu.Item key="home">
-            <NavLink to="/home" style={{display:'flex'}} ><Icon type="home" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px' }} />{this.state.language ? <span>Accueil</span> : <span>Home</span>}</NavLink>
-          </Menu.Item>
-          <Menu.Item key="team">
-            <NavLink to="/equipe" style={{display:'flex'}} ><Icon type="team" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px' }} />{this.state.language ? <span>Équipe</span> : <span>Team</span>}</NavLink>
-          </Menu.Item>
-          <SubMenu title={<span className="submenu-title-wrapper"><Icon type="setting" />Services</span>}>
-            
-              <Menu.Item key="service1">
-                <NavLink to="/route2"><Icon type="setting" />{this.state.language ? <span>Offre</span> : <span>Offer</span>}</NavLink>
-              </Menu.Item>
-              <Menu.Item key="service2">
-                <NavLink to="/route6"><Icon type="setting" />{this.state.language ? <span>Sélection</span> : <span>Selection</span>}</NavLink>
-              </Menu.Item>
-              <Menu.Item key="service3">
-                <NavLink to="/route3"><Icon type="clock-circle" />{this.state.language ? <span>Cycles</span> : <span>LifeCycles</span>}</NavLink>
-              </Menu.Item>
-            
-          </SubMenu>    
-          <SubMenu title={<span className="submenu-title-wrapper"><Icon type="contacts" />Contact</span>}>
-            <Menu.Item key="question">
-              <NavLink to="/route4"><Icon type="form" />{this.state.language ? <span>Questions</span> : <span>Questions</span>}</NavLink>
-            </Menu.Item>
-            <Menu.Item key="contact">
-              <NavLink to="/route6"><Icon type="mail" />{this.state.language ? <span>Contact</span> : <span>Contact</span>}</NavLink>
-            </Menu.Item>
-          </SubMenu>
-        </Menu>
-        <div style={{marginTop:10}} onClick={this.toggleLanguage}><SwitchA style={{backgroundColor:'#3da300'}} checkedChildren="F" unCheckedChildren="E" defaultChecked /></div>
-      </div>
-
-                                        {/*<ul className="nav">
-                                          <NavLink to="/route1"><span>{this.statelanguage ? <div>Accueil</div> : <div>Home</div>}</span></NavLink>
-                                          <NavLink to="/route2"><span>Services</span></NavLink>
-                                          <NavLink to="/route3"><span>{this.state.language ? <div>Cycles</div> : <div>Lifecycles</div>}</span></NavLink>
-                                          <NavLink to="/route4"><span>{this.state.language ? <div>Parallax</div> : <div>Parallax</div>}</span></NavLink>
-                                          <NavLink to="/route6"><span>{this.state.language ? <div>sTree</div> : <div>sTree</div>}</span></NavLink>
-                                          <li className="navItem" onClick={this.toggleOrder} style={{display:'flex'}}><Icon type="gift" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px' }} /> Commandes</li>
-                                          <li className="navItem" onClick={this.toggle} style={{display:'flex'}}><Icon type="mail" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '4px 5px'  }} /> Contact</li>
-                                          <li className="navItem" onClick={this.toggleLanguage}><SwitchA checkedChildren="F" unCheckedChildren="E" defaultChecked /></li>
-                                        </ul>*/}
+                                        :
+                                        <div className="narrowLinks" style={{display:'none'}}>
+                                            <a href="#" onClick={this.burgerToggle}>Link 1</a>
+                                            <a href="#" onClick={this.burgerToggle}>Link 2</a>
+                                            <a href="#" onClick={this.burgerToggle}>Link 3</a>
+                                        </div>
+                                      }
                                     </div>
+                                    <div className="navWide">
+                                      
+                                        <NavLink to="/home">
+                                            <Icon type="home" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '0 5px 0 0' }} />
+                                            {language ? <span>Accueil</span> : <span>Home</span>}
+                                        </NavLink>
+                                        <NavLink to="/green">
+                                            <Icon type="team" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '0 5px 0 0' }} />
+                                            {language ? <span>Équipe</span> : <span>Team</span>}
+                                        </NavLink>
+                                        <NavLink to="/services">
+                                            <Icon type="setting" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '0 5px 0 0' }} />
+                                            {language ? <span>Services</span> : <span>Services</span>}
+                                        </NavLink>
+                                        <NavLink to="/voronoi">
+                                            <Icon type="setting" themed="filled" style={{ color: 'rgba(0,0,0,.25)', margin: '0 5px 0 0' }} />
+                                            { language ? <span>Voronoi</span> : <span>Voronoi</span> }
+                                        </NavLink>
+                                        <a href="#">Link 4</a>
+                                      
+                                    </div>
+                                    <div style={{marginLeft:10}} onClick={this.toggleLanguage}><SwitchANTD style={{backgroundColor:'#3da300'}} checkedChildren="F" unCheckedChildren="E" defaultChecked /></div>
+                                  </div>
                                 </nav>
                             <div className="content-route">
                             <Transition
